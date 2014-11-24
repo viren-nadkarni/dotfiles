@@ -1,0 +1,17 @@
+[user]
+    name = viren nadkarni
+    email = viren@outlook.com
+
+[core]
+    editor = vim
+
+[alias]
+    aa = add --all
+    br = branch
+    ci = commit
+    cl = clone --recursive
+    co = checkout
+    di = diff
+    lg = log --pretty=oneline --max-count 20 --graph --abbrev-commit
+    st = status --short --branch
+
