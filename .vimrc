@@ -19,7 +19,7 @@ set nowrap
 set cmdheight=2                             "number of lines used for the command-line
 set lazyredraw                              "don't redraw while executing macros
 "set list                                   "show <Tab> as ^I and end-of-line as $
-"set listchars=trail:·,precedes:«,extends:»,tab:▸\ 
+"set listchars=trail:·,tab:▸\ ,precedes:«,extends:»
 set number
 
 " syntax, highlighting and spelling
@@ -60,7 +60,7 @@ set novisualbell                            "don't use visual bell either
 
 " editing text
 set undolevels=1000
-set textwidth=500                           "line length above which to break a line
+set textwidth=150                           "line length above which to break a line
 set backspace=indent,eol,start              "specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set showmatch                               "when inserting a bracket, briefly jump to its match
 set nojoinspaces                            "use two spaces after '.' when joining a line
@@ -80,6 +80,7 @@ set timeoutlen=1000
 set ttimeoutlen=0
 
 " reading and writing files
+set fileformat=unix
 set fileformats=unix,dos
 set nowritebackup                           "don't write a backup file before overwriting a file
 set nobackup                                "don't keep a backup after overwriting a file
@@ -89,7 +90,7 @@ set autoread                                "automatically read a file when it w
 set noswapfile                              "don't use a swap file for this buffer
 
 " command line editing
-set history=1000                            "how many command lines are remembered 
+set history=1000                            "how many command lines are remembered
 set wildmode=list:longest,full              "specifies how command line completion works
 set wildignore=*.o,*~,*.pyc                 "list of patterns to ignore files for file name completion
 set wildmenu                                "command-line completion shows a list of matches
@@ -97,8 +98,6 @@ set wildmenu                                "command-line completion shows a lis
 " multi-byte characters
 set encoding=utf8
 
-" various
-"set virtualedit=onemore                        "when to use virtual editing
 
 if has('gui_running')
   set lines=40
