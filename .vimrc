@@ -1,8 +1,9 @@
-execute pathogen#infect()
+let mapleader=','
 
 " important
 set nocompatible
 set pastetoggle=<F12>
+execute pathogen#infect()
 
 " moving around, searching and patterns
 set whichwrap+=<,>,h,l,[,]
@@ -23,15 +24,11 @@ set lazyredraw                              "don't redraw while executing macros
 set number
 
 " syntax, highlighting and spelling
-colorscheme base16-default
-set background=dark
+colorscheme Tomorrow
+set background=light
 set hlsearch
-"set cursorline                             "highlight the screen line of the cursor
-
+set cursorline                              "highlight the screen line of the cursor
 syntax on
-filetype on
-filetype plugin on
-filetype indent on
 filetype plugin indent on
 
 " multiple windows
@@ -98,18 +95,22 @@ set wildmenu                                "command-line completion shows a lis
 " multi-byte characters
 set encoding=utf8
 
+" terminal
+if $TERM=='xterm-256color' || $TERM=='screen-256color' || $COLORTERM=='gnome-terminal'
+  set t_Co=256
+endif
 
+" gui
 if has('gui_running')
   set lines=40
   set columns=100
-  set t_Co=256
-  set guioptions-=T                         "remove Toolbar
+  set guioptions-=T                         "remove toolbar
   set guioptions-=t                         "don't include tearoff menu items
-  set guioptions+=e                         "add tab pages when indicated with 'showtabline'
-  set guioptions+=c                         "use console dialogs instead of popups
+  set guioptions+=e                         "use a tab line
+  set guioptions-=c                         "use gui popups for confirmation
   set guioptions+=g                         "make inactive menu items grey
   set guitablabel=%M\ %t                    "modified flag, file name
-  if has("gui_win32")
+  if has('gui_win32')
     set guifont=Consolas:h10:cDEFAULT
   endif
 endif
@@ -122,5 +123,6 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-nmap ; :CtrlPBuffer<CR>
+nmap \ :NERDTreeToggle<CR>
 
+let g:ctrlp_map=';'
