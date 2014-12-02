@@ -19,30 +19,28 @@ set nowrap
 "set linebreak                              "wrap long lines at a character in 'breakat'
 set cmdheight=2                             "number of lines used for the command-line
 set lazyredraw                              "don't redraw while executing macros
-"set list                                   "show <Tab> as ^I and end-of-line as $
-"set listchars=trail:·,tab:▸\ ,precedes:«,extends:»
+set list
+set listchars=tab:▸\ ,trail:·
 set number
 
 " syntax, highlighting and spelling
-colorscheme Tomorrow
-set background=light
+colorscheme Tomorrow-Night-Bright
+set background=dark
 set hlsearch
 set cursorline                              "highlight the screen line of the cursor
 syntax on
 filetype plugin indent on
 
 " multiple windows
-if has('statusline')
-  set laststatus=2
-  set statusline=%<%f                       "filename
-  set statusline+=\ %w%h%m%r                "options
-  set statusline+=\ [%{&ff}/%Y]             "filetype
-  set statusline+=\ [%{getcwd()}]           "current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%   "file nav info
-endif
 set hidden                                  "don't unload a buffer when no longer shown in a window
 set splitright                              "a new window is put right of the current one
 set splitbelow                              "a new window is put below the current one
+set laststatus=2
+set statusline=%<%f                         "filename
+set statusline+=\ %w%h%m%r                  "options
+set statusline+=\ [%{&ff}/%Y]               "filetype
+set statusline+=\ [%{getcwd()}]             "current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%     "file nav info
 
 " using the mouse
 set mouse=a
@@ -70,11 +68,10 @@ set softtabstop=4                           "if non-zero, number of spaces to in
 set expandtab                               "expand <Tab> to spaces in Insert mode
 set autoindent
 set smartindent
-set copyindent                              "copy whitespace for indenting from previous line
 
 " mapping
 set timeoutlen=1000
-set ttimeoutlen=0
+set ttimeoutlen=50
 
 " reading and writing files
 set fileformat=unix
@@ -106,7 +103,7 @@ if has('gui_running')
   set columns=100
   set guioptions-=T                         "remove toolbar
   set guioptions-=t                         "don't include tearoff menu items
-  set guioptions+=e                         "use a tab line
+  set guioptions+=e                         "use a gui tab line
   set guioptions-=c                         "use gui popups for confirmation
   set guioptions+=g                         "make inactive menu items grey
   set guitablabel=%M\ %t                    "modified flag, file name
@@ -126,3 +123,6 @@ map <C-l> <C-W>l
 nmap \ :NERDTreeToggle<CR>
 
 let g:ctrlp_map=';'
+let g:syntastic_check_on_open=1
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#tabline#enabled=1
