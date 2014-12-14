@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 files=".aliases .bashrc .gitconfig .nanorc .vimrc .vim"
@@ -7,8 +8,14 @@ case $1 in
     "init")
         cd $dotfiles
 
-        echo "Fetching bundle submodules"
         git submodule update --init --recursive
+        
+        for file in $files; do
+            if [ -L ~/$file ]; then
+                echo "Symlinks exist"
+                exit 1
+            fi
+        done
 
         echo "Existing dotfiles will be renamed to *.old"
         for file in $files; do
@@ -25,8 +32,10 @@ case $1 in
 
     *)
         echo "Usage: $0 <option>"
-        echo "  init      setup softlinks for dotfiles"
+        echo "  init      setup symlinks for dotfiles"
         echo "  update    update vim bundles"
+
+        exit 1
         ;;
 esac
 
