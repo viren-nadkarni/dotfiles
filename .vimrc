@@ -15,7 +15,7 @@ set smartcase                               "override 'ignorecase' when pattern 
 
 " displaying text
 set scrolloff=4                             "number of screen lines to show around the cursor
-set nowrap
+set wrap
 "set linebreak                              "wrap long lines at a character in 'breakat'
 set cmdheight=2                             "number of lines used for the command-line
 set lazyredraw                              "don't redraw while executing macros
