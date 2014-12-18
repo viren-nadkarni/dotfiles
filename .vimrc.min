@@ -1,0 +1,71 @@
+set nocompatible
+
+set whichwrap+=<,>,h,l,[,]
+set autochdir
+set magic
+set incsearch
+set ignorecase
+set smartcase
+
+set scrolloff=4
+set wrap
+set cmdheight=2
+set lazyredraw
+set number
+
+set hlsearch
+filetype plugin indent on
+
+set hidden
+set splitright
+set splitbelow
+set laststatus=2
+set statusline=%<%f
+set statusline+=\ %w%h%m%r
+set statusline+=\ [%{&ff}/%Y]
+set statusline+=\ [%{getcwd()}]
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+
+set showcmd
+set showmode
+set ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set noerrorbells
+set novisualbell
+
+set undolevels=1000
+set textwidth=150
+set backspace=indent,eol,start
+set showmatch
+set nojoinspaces
+
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set expandtab
+set autoindent
+set smartindent
+
+set timeoutlen=1000
+set ttimeoutlen=50
+
+set fileformat=unix
+set fileformats=unix,dos
+set nowritebackup
+set backup
+set autoread
+
+set swapfile
+
+set history=1000
+set wildmode=list:longest,full
+set wildignore=*.o,*~,*.pyc
+set wildmenu
+
+set encoding=utf8
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l

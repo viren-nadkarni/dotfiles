@@ -17,6 +17,7 @@ shopt -s autocd
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+export EDITOR="vim"
 
 force_color_prompt=yes
 
@@ -50,4 +51,4 @@ unset color_prompt force_color_prompt
 
 
 [ -r ~/.aliases ] && . ~/.aliases
-
+[ -r ~/.bash_aliases ] && ~/.bash_aliases
