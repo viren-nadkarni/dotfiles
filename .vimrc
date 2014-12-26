@@ -1,12 +1,11 @@
-let mapleader=','
-
 " important
 set nocompatible
 set pastetoggle=<F12>
+let mapleader=','
 execute pathogen#infect()
 
 " moving around, searching and patterns
-set whichwrap+=<,>,h,l,[,]
+set whichwrap+=<,>,[,]
 set autochdir                               "change to directory of file in buffer
 set magic                                   "change the way backslashes are used in search patterns
 set incsearch                               "show match for partly typed search command
@@ -16,18 +15,14 @@ set smartcase                               "override 'ignorecase' when pattern 
 " displaying text
 set scrolloff=4                             "number of screen lines to show around the cursor
 set wrap
-"set linebreak                              "wrap long lines at a character in 'breakat'
 set cmdheight=2                             "number of lines used for the command-line
 set lazyredraw                              "don't redraw while executing macros
-set list
-set listchars=tab:▸\ ,trail:·
 set number
 
 " syntax, highlighting and spelling
-colorscheme Tomorrow-Night-Bright
 set background=dark
 set hlsearch
-set cursorline                              "highlight the screen line of the cursor
+colorscheme Tomorrow-Night-Bright
 syntax on
 filetype plugin indent on
 
@@ -42,9 +37,6 @@ set statusline+=\ [%{&ff}/%Y]               "filetype
 set statusline+=\ [%{getcwd()}]             "current dir
 set statusline+=%=%-14.(%l,%c%V%)\ %p%%     "file nav info
 
-" using the mouse
-set mouse=a
-
 " messages and info
 set showcmd                                 "show (partial) command keys in the status line
 set noshowmode
@@ -58,7 +50,7 @@ set undolevels=1000
 set textwidth=150                           "line length above which to break a line
 set backspace=indent,eol,start              "specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set showmatch                               "when inserting a bracket, briefly jump to its match
-set nojoinspaces                            "use two spaces after '.' when joining a line
+set nojoinspaces                            "don't use two spaces after '.' when joining a line
 
 " tabs and indenting
 set tabstop=4                               "number of spaces a <Tab> in the text stands for
@@ -81,7 +73,7 @@ set nobackup                                "don't keep a backup after overwriti
 set autoread                                "automatically read a file when it was modified outside of Vim
 
 " the swap file
-set noswapfile                              "don't use a swap file for this buffer
+set swapfile
 
 " command line editing
 set history=1000                            "how many command lines are remembered
@@ -93,20 +85,31 @@ set wildmenu                                "command-line completion shows a lis
 set encoding=utf8
 
 " terminal
-if $TERM=='xterm-256color' || $TERM=='screen-256color' || $COLORTERM=='gnome-terminal'
+"if $TERM=='xterm-256color' || $TERM=='screen-256color' || $COLORTERM=='gnome-terminal'
   set t_Co=256
-endif
+"endif
 
 " gui
 if has('gui_running')
-  set lines=40
+  " displaying text
+  set list
+  set listchars=tab:▸\ ,trail:·
   set columns=100
+  set lines=40
+
+  " syntax, highlighting and spelling
+  set cursorline
+
+  " using the mouse
+  set mouse=a
+
   set guioptions-=T                         "remove toolbar
   set guioptions-=t                         "don't include tearoff menu items
   set guioptions+=e                         "use a gui tab line
   set guioptions-=c                         "use gui popups for confirmation
   set guioptions+=g                         "make inactive menu items grey
   set guitablabel=%M\ %t                    "modified flag, file name
+
   if has('gui_win32')
     set guifont=Consolas:h10:cDEFAULT
   endif

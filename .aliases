@@ -10,6 +10,9 @@ if [ $UID -ne 0 ]; then
     alias halt='sudo halt'
     alias reboot='sudo reboot'
     alias shutdown='sudo shutdown now'
+
+    alias agi='sudo apt-get install'
+    alias agr='sudo apt-get remove'
 fi
 
 alias dir="dir --color=auto"
@@ -30,4 +33,3 @@ alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
-

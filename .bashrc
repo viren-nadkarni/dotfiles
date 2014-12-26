@@ -18,6 +18,7 @@ shopt -s autocd
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 export EDITOR="vim"
+export TERM="xterm-256color"
 
 force_color_prompt=yes
 

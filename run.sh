@@ -8,31 +8,33 @@ function usage {
 Usage: $0 <option>
   inst      install
   update    update vim bundles
-  min       minimal install
   rm        uninstall
 EOF
 }
 
-function destruct {
-    read -p "Delete $dotfiles? [y|N] " -n 1 -r
+MODE="copy"
+function inst_mode {
+    echo "[1] Copy"
+    echo " 2  Symlink"
+    read -p ": " -n 1 -r
+    echo
+    [[ $REPLY =~ ^[2]$ ]] && MODE="symlink"
+}
+
+function self_destroy {
+    read -p "Delete $dotfiles? [y/N] " -n 1 -r
     echo
     [[ $REPLY =~ ^[Yy]$ ]] && rm -rf $dotfiles && exit 0
 }
 
 case $1 in
     "inst")
-        MODE="1"
-        echo "[1] Symlinks"
-        echo " 2  Copy"
-        read -p ": " -n 1 -r
-        echo
-        [[ $REPLY =~ ^[2]$ ]] && MODE="2"
-
+        inst_mode
         cd $dotfiles
 
         git submodule update --init --recursive
 
-        if [ $MODE == "1" ]; then
+        if [ "$MODE" == "symlink" ]; then
             for file in $files; do
                 if [ -L ~/$file ]; then
                     echo "Symlinks exist"
@@ -43,22 +45,28 @@ case $1 in
 
         for file in $files; do
             if [ -a ~/$file ]; then
-                mv ~/$file ~/$file".old"
-                echo $file" has been renamed to "$file".old"
+                if [ -a ~/$file".old" ]; then
+                    epoch=$(date +"%s")
+                    echo "Renaming "$file" to "$file".old."$epoch
+                    mv ~/$file ~/$file".old."$epoch
+                else
+                    echo "Renaming "$file" to "$file".old"
+                    mv ~/$file ~/$file".old"
+                fi
             fi
 
-            if [ $MODE == "1" ]; then
+            if [ "$MODE" == "symlink" ]; then
                 ln -s $dotfiles/$file ~/$file
             else
                 cp -r $dotfiles/$file ~/$file
             fi
         done
-        destruct
-        ;;
+        self_destroy
+    ;;
 
     "update")
         git submodule foreach git pull origin master
-        ;;
+    ;;
 
     "rm")
         for file in $files; do
@@ -68,20 +76,12 @@ case $1 in
                 mv ~/$file".old" ~/$file
             fi
         done
-        destruct
-        ;;
-
-    "min")
-        if [ -a ~/.vimrc ]; then
-            mv ~/.vimrc ~/.vimrc.old
-        fi
-        cp $dotfiles/.vimrc.min ~/.vimrc
-        destruct
-        ;;
+        self_destroy
+    ;;
 
     *)
         usage
         exit 1
-        ;;
+    ;;
 esac
 
