@@ -59,9 +59,9 @@ case $1 in
                 ln -s $dotfiles/$file ~/$file
             else
                 cp -r $dotfiles/$file ~/$file
+                self_destroy
             fi
         done
-        self_destroy
     ;;
 
     "update")

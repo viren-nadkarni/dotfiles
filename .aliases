@@ -6,18 +6,16 @@ alias ping='ping -c 4'
 
 if [ $UID -ne 0 ]; then
     alias scat='sudo cat'
-    alias svim='sudo vim'
+    alias svim='sudo -E vim'
     alias halt='sudo halt'
     alias reboot='sudo reboot'
     alias shutdown='sudo shutdown now'
-
-    alias agi='sudo apt-get install'
-    alias agr='sudo apt-get remove'
 fi
 
-alias dir="dir --color=auto"
-alias grep="grep --colour=auto"
+alias dir='dir --color=auto'
+alias grep='grep --colour=auto'
 alias diff='colordiff'
+alias less='less -r'
 
 alias ls='ls -hF --color=auto'
 alias lr='ls -R'                    # recursive
@@ -26,7 +24,6 @@ alias la='ll -A'
 alias lx='ll -BX'                   # sort by ext
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
-alias lm='la | more'
 
 alias ln='ln -i'
 
