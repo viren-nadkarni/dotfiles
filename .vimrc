@@ -78,7 +78,8 @@ set swapfile
 " command line editing
 set history=1000                            "how many command lines are remembered
 set wildmode=list:longest,full              "specifies how command line completion works
-set wildignore=*.o,*~,*.pyc                 "list of patterns to ignore files for file name completion
+set wildignore=*.swp,*~                     "list of patterns to ignore files for file name completion
+set wildignore+=*.o,*.pyc,*.so,*.dll,*.exe,*.zip,*.lnk,*.dat,*.db,*.ini
 set wildmenu                                "command-line completion shows a list of matches
 
 " multi-byte characters
@@ -92,8 +93,8 @@ set encoding=utf8
 " gui
 if has('gui_running')
   " displaying text
-  set list
-  set listchars=tab:▸\ ,trail:·
+  "set list
+  "set listchars=tab:▸\ ,trail:·
   set columns=100
   set lines=40
 
@@ -111,21 +112,29 @@ if has('gui_running')
   set guitablabel=%M\ %t                    "modified flag, file name
 
   if has('gui_win32')
-    set guifont=Consolas:h10:cDEFAULT
+    "set guifont=Consolas:h10:cDEFAULT
+    set guifont=Tamsyn7x14:h8:cOEM
   endif
 endif
 
 map j gj
 map k gk
-
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+"map :q :bd
 
 nmap \ :NERDTreeToggle<CR>
+nmap <C-\> :TagbarToggle<CR>
 
 let g:ctrlp_map=';'
 let g:syntastic_check_on_open=1
 "let g:airline_powerline_fonts=1
 "let g:airline#extensions#tabline#enabled=1
+"let g:tagbar_ctags_bin='C:\ctags58\ctags.exe'
+"let g:tagbar_width=30
+"let g:ctrlp_working_path_mode='c'
+
+"autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
+"autocmd vimenter * NERDTree
