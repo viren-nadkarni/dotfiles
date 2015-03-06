@@ -5,8 +5,9 @@ alias du='du -c -h'
 alias ping='ping -c 4'
 
 if [ $UID -ne 0 ]; then
+    alias sudo='sudo -E'
     alias scat='sudo cat'
-    alias svim='sudo -E vim'
+    alias svim='sudo vim'
     alias halt='sudo halt'
     alias reboot='sudo reboot'
     alias shutdown='sudo shutdown now'
