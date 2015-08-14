@@ -17,6 +17,7 @@ alias dir='dir --color=auto'
 alias grep='grep --colour=auto'
 alias diff='colordiff'
 alias less='less -r'
+alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 
 alias ls='ls -hF --color=auto'
 alias lr='ls -R'                    # recursive
