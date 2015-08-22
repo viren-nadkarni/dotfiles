@@ -1,89 +1,61 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
-dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-files=".aliases .bashrc .gitconfig .nanorc .vimrc .vim"
+dotfiles_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+files="$(ls $dotfiles_path)"
 
-function usage {
+operation=${1:-}
+if [[ -z "$operation" ]]; then
     cat <<EOF
 Usage: $0 <option>
   inst      install
-  update    update vim bundles
-  rm        uninstall
+  upd       update submodules
+  rm        remove
 EOF
-}
+    exit 1
+fi
 
-MODE="copy"
-function inst_mode {
-    echo "[1] Copy"
-    echo " 2  Symlink"
-    read -p ": " -n 1 -r
-    echo
-    [[ $REPLY =~ ^[2]$ ]] && MODE="symlink"
-}
-
-function self_destroy {
-    read -p "Delete $dotfiles? [y/N] " -n 1 -r
-    echo
-    [[ $REPLY =~ ^[Yy]$ ]] && rm -rf $dotfiles && exit 0
-}
-
-case $1 in
+case $operation in
     "inst")
-        inst_mode
-        cd $dotfiles
+        cd $dotfiles_path
 
         git submodule update --init --recursive
 
-        if [ "$MODE" == "symlink" ]; then
-            for file in $files; do
-                if [ -L ~/$file ]; then
-                    echo "Symlinks exist"
-                    exit 1
-                fi
-            done
-        fi
-
         for file in $files; do
-            if [ -a ~/$file ]; then
-                if [ -a ~/$file".old" ]; then
+            if [ $file == "$(basename $0)" ]; then
+                continue
+            fi
+            if [ -a ~/.$file ]; then
+                if [ -a ~/.$file".old" ]; then
                     epoch=$(date +"%s")
-                    echo "Renaming "$file" to "$file".old."$epoch
-                    mv ~/$file ~/$file".old."$epoch
+                    echo "Renaming: ."$file" -> ."$file".old."$epoch
+                    mv ~/.$file ~/.$file".old."$epoch
                 else
-                    echo "Renaming "$file" to "$file".old"
-                    mv ~/$file ~/$file".old"
+                    echo "Renaming: ."$file" -> ."$file".old"
+                    mv ~/.$file ~/.$file".old"
                 fi
             fi
 
-            if [ "$MODE" == "symlink" ]; then
-                ln -s $dotfiles/$file ~/$file
-            else
-                cp -r $dotfiles/$file ~/$file
-            fi
+            cp -r $dotfiles_path/$file ~/.$file
         done
-        if [ "$MODE" == "symlink" ]; then
-            self_destroy
-        fi
     ;;
 
-    "update")
+    "upd")
         git submodule foreach git pull origin master
     ;;
 
     "rm")
         for file in $files; do
-            rm -r ~/$file
-            if [ -a ~/$file".old" ]; then
-                echo "Old $file restored"
-                mv ~/$file".old" ~/$file
+            if [ $file == "$(basename $0)" ]; then
+                continue
+            fi
+            rm -r ~/.$file
+            if [ -a ~/.$file".old" ]; then
+                mv ~/.$file".old" ~/.$file
+                echo "Restoring: .$file.old -> .$file"
             fi
         done
-        self_destroy
-    ;;
-
-    *)
-        usage
-        exit 1
     ;;
 esac
 
