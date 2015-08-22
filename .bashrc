@@ -30,13 +30,14 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1="\[\e[1;33m\]\u@\h\[\e[0m\] \[\e[1;31m\]\w\[\e[0m\] \$ "
+    PS1="\[\e[1;33m\]\u@\h\[\e[0m\] \[\e[1;31m\]\w\[\e[0m\] \$git_branch\$git_dirty\$ "
 else
     PS1="\u@\h \w \$ "
 fi
 
 unset color_prompt force_color_prompt
 
+export PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
 export EDITOR="vim"
 export TERM="xterm-256color"
 
