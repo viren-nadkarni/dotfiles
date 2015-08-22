@@ -1,11 +1,10 @@
-[[ -f ~/.aliases.local ]] && . ~/.aliases.local
 
 alias df='df -h'
 alias du='du -c -h'
 alias ping='ping -c 4'
 
 if [ $UID -ne 0 ]; then
-    alias sudo='sudo -E'
+    alias sudo='sudo -E'            # preserve environment
     alias scat='sudo cat'
     alias svim='sudo vim'
     alias halt='sudo halt'
@@ -13,11 +12,9 @@ if [ $UID -ne 0 ]; then
     alias shutdown='sudo shutdown now'
 fi
 
-alias dir='dir --color=auto'
-alias grep='grep --colour=auto'
-alias diff='colordiff'
-alias less='less -r'
-alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
 
 alias ls='ls -hF --color=auto'
 alias lr='ls -R'                    # recursive
@@ -29,6 +26,7 @@ alias lt='ll -rt'                   # sort by date
 
 alias ln='ln -i'
 
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
+alias grep='grep --colour=auto'
+alias less='less -r'
+[[ command -v colordiff ]] && alias diff='colordiff'
+
