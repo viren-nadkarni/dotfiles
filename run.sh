@@ -2,16 +2,17 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-dotfiles_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 files="$(ls $dotfiles_path)"
 
 operation=${1:-}
 if [[ -z "$operation" ]]; then
     cat <<EOF
-Usage: $0 <option>
-  inst      install
-  upd       update submodules
-  rm        remove
+Usage: $0 <operation>
+Operations:
+   inst install
+   upd  update submodules
+   rm   remove
 EOF
     exit 1
 fi
@@ -26,18 +27,17 @@ case $operation in
             if [ $file == "$(basename $0)" ]; then
                 continue
             fi
+
             if [ -a ~/.$file ]; then
-                if [ -a ~/.$file".old" ]; then
-                    epoch=$(date +"%s")
-                    echo "Renaming: ."$file" -> ."$file".old."$epoch
-                    mv ~/.$file ~/.$file".old."$epoch
+                if [ -a ~/.${file}.old ]; then
+                    echo "Skipping backup for .${file} because .${file}.old exists"
                 else
-                    echo "Renaming: ."$file" -> ."$file".old"
-                    mv ~/.$file ~/.$file".old"
+                    echo "Backing up .${file} -> .${file}.old"
+                    mv ~/.${file} ~/.${file}.old
                 fi
             fi
 
-            cp -r $dotfiles_path/$file ~/.$file
+            cp -r ${dotfiles_path}/${file} ~/.${file}
         done
     ;;
 
@@ -51,9 +51,9 @@ case $operation in
                 continue
             fi
             rm -r ~/.$file
-            if [ -a ~/.$file".old" ]; then
-                mv ~/.$file".old" ~/.$file
-                echo "Restoring: .$file.old -> .$file"
+            if [ -a ~/.${file}.old ]; then
+                mv ~/.${file}.old ~/.${file}
+                echo "Restored .${file}.old -> .${file}"
             fi
         done
     ;;

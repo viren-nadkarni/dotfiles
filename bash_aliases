@@ -30,7 +30,7 @@ alias grep='grep --colour=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-command -v colordiff >/dev/null 2>&1 && alias diff='colordiff'
-command -v tmux >/dev/null 2>&1 && alias tmux='TERM=screen-256color tmux'
 alias less='less -r'
+alias diff='colordiff'
+alias tmux='tmux -2'
 

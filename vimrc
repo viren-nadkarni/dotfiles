@@ -112,8 +112,7 @@ if has('gui_running')
   set guitablabel=%M\ %t                    "modified flag, file name
 
   if has('gui_win32')
-    "set guifont=Consolas:h10:cDEFAULT
-    set guifont=Tamsyn7x14:h8:cOEM
+    set guifont=Consolas:h10:cDEFAULT
   endif
 endif
 
