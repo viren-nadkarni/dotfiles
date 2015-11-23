@@ -3,7 +3,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-files="$(ls $dotfiles_path)"
+#files="$(ls $dotfiles_path)"
+files="bash_aliases bash_functions bashrc gitconfig tmux.conf vim/ vimrc"
 
 operation=${1:-}
 if [[ -z "$operation" ]]; then
@@ -24,9 +25,9 @@ case $operation in
         git submodule update --init --recursive
 
         for file in $files; do
-            if [ $file == "$(basename $0)" ]; then
-                continue
-            fi
+#            if [ $file == "$(basename $0)" ]; then
+#                continue
+#            fi
 
             if [ -a ~/.$file ]; then
                 if [ -a ~/.${file}.old ]; then
@@ -39,6 +40,9 @@ case $operation in
 
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
+
+        cat ${dotfiles_path}/_bashrc >> ~/.bashrc
+        sudo ${dotfiles_path}/bash _color_prompt.sh
     ;;
 
     "upd")
