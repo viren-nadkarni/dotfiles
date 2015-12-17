@@ -42,7 +42,7 @@ case $operation in
         done
 
         cat ${dotfiles_path}/_bashrc >> ~/.bashrc
-        sudo ${dotfiles_path}/bash _color_prompt.sh
+        sudo bash ${dotfiles_path}/_color_prompt.sh
     ;;
 
     "upd")

@@ -27,10 +27,10 @@ export TERM="xterm-256color"
 [ -r /etc/bash_completion ] && source /etc/bash_completion
 
 # functions
-[ -r ~/.bash_functions ] && source ~/.bash_functions
+[ -r ~/.bash_function ] && source ~/.bash_function
 
 # aliases
-[ -r ~/.bash_aliases ] && source ~/.bash_aliases
+[ -r ~/.bash_alias ] && source ~/.bash_alias
 
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune; echo)
