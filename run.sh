@@ -1,10 +1,10 @@
 #!/bin/bash
 set -euo pipefail
-IFS=$'\n\t'
+#IFS=$'\n\t'
 
 dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 #files="$(ls $dotfiles_path)"
-files="bash_aliases bash_functions bashrc gitconfig tmux.conf vim/ vimrc"
+files="bash_alias bash_function gitconfig tmux.conf vim/ vimrc"
 
 operation=${1:-}
 if [[ -z "$operation" ]]; then
@@ -41,7 +41,7 @@ case $operation in
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
 
-        cat ${dotfiles_path}/_bashrc >> ~/.bashrc
+        grep "find_git_branch" ~/.bashrc || (cat ${dotfiles_path}/_bashrc >> ~/.bashrc)
         sudo bash ${dotfiles_path}/_color_prompt.sh
     ;;
 
@@ -54,12 +54,16 @@ case $operation in
             if [ $file == "$(basename $0)" ]; then
                 continue
             fi
+
             rm -r ~/.$file
+
             if [ -a ~/.${file}.old ]; then
                 mv ~/.${file}.old ~/.${file}
                 echo "Restored .${file}.old -> .${file}"
             fi
         done
+
+        rm /etc/profiles.d/color_prompt.sh
     ;;
 esac
 
