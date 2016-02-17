@@ -47,7 +47,7 @@ set novisualbell                            "don't use visual bell either
 
 " editing text
 set undolevels=1000
-set textwidth=150                           "line length above which to break a line
+"set textwidth=150                           "line length above which to break a line
 set backspace=indent,eol,start              "specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set showmatch                               "when inserting a bracket, briefly jump to its match
 set nojoinspaces                            "don't use two spaces after '.' when joining a line

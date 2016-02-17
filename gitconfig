@@ -15,3 +15,5 @@
     lg = log --oneline --graph --abbrev-commit --max-count 20
     st = status --short --branch
 
+[color]
+    ui = true
