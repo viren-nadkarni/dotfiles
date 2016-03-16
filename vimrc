@@ -59,7 +59,7 @@ set smarttab                                "a <Tab> in an indent inserts 'shift
 set softtabstop=4                           "if non-zero, number of spaces to insert for a <Tab>
 set expandtab                               "expand <Tab> to spaces in Insert mode
 set autoindent
-set smartindent
+"set smartindent
 
 " mapping
 set timeoutlen=1000
