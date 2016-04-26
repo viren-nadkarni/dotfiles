@@ -12,6 +12,8 @@
     cl = clone --recursive
     co = checkout
     di = diff
+    dic = diff --cached
+    dih = diff HEAD
     lg = log --oneline --graph --abbrev-commit --max-count 20
     st = status --short --branch
 

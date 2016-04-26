@@ -1,39 +1,37 @@
 #!/bin/bash
-set -euo pipefail
+set -xeuo pipefail
 #IFS=$'\n\t'
 
 dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-#files="$(ls $dotfiles_path)"
-files="bash_alias bash_function gitconfig tmux.conf vim/ vimrc"
+files="bash_alias bash_function gitconfig tmux.conf vim vimrc"
 
-operation=${1:-}
-if [[ -z "$operation" ]]; then
+function print_help {
     cat <<EOF
 Usage: $0 <operation>
 Operations:
-   inst install
-   upd  update submodules
-   rm   remove
+   install
+   uninstall
 EOF
+}
+
+operation=${1:-}
+if [[ -z "$operation" ]]; then
+    print_help
     exit 1
 fi
 
 case $operation in
-    "inst")
+    "install")
         cd $dotfiles_path
 
         git submodule update --init --recursive
 
         for file in $files; do
-#            if [ $file == "$(basename $0)" ]; then
-#                continue
-#            fi
-
-            if [ -a ~/.$file ]; then
+            if [ -a ~/.${file} ]; then
                 if [ -a ~/.${file}.old ]; then
-                    echo "Skipping backup for .${file} because .${file}.old exists"
+                    echo ".${file} not backed up because .${file}.old exists"
                 else
-                    echo "Backing up .${file} -> .${file}.old"
+                    echo "Backed up .${file} -> .${file}.old"
                     mv ~/.${file} ~/.${file}.old
                 fi
             fi
@@ -41,29 +39,28 @@ case $operation in
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
 
-        grep "find_git_branch" ~/.bashrc || (cat ${dotfiles_path}/_bashrc >> ~/.bashrc)
-        sudo bash ${dotfiles_path}/_color_prompt.sh
+        grep "viren-nadkarni" ~/.bashrc 1> /dev/null || (cp ~/.bashrc ~/.bashrc.old; cat ${dotfiles_path}/_bashrc ${dotfiles_path}/_color_prompt >> ~/.bashrc)
     ;;
 
-    "upd")
+    "update")
         git submodule foreach git pull origin master
     ;;
 
-    "rm")
+    "uninstall"|"remove")
+        files="${files} bashrc"
         for file in $files; do
-            if [ $file == "$(basename $0)" ]; then
-                continue
-            fi
-
-            rm -r ~/.$file
+            rm -r ~/.${file}
 
             if [ -a ~/.${file}.old ]; then
                 mv ~/.${file}.old ~/.${file}
                 echo "Restored .${file}.old -> .${file}"
             fi
         done
+    ;;
 
-        rm /etc/profiles.d/color_prompt.sh
+    *)
+        print_help
+        exit 1
     ;;
 esac
 
