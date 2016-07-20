@@ -1,5 +1,4 @@
-
-# viren-nadkarni
+# github.com/viren-nadkarni/dotfiles
 # do nothing if not running interactively
 [[ $- != *i* ]] && return
 

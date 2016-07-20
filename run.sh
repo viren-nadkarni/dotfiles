@@ -39,7 +39,7 @@ case $operation in
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
 
-        grep "viren-nadkarni" ~/.bashrc 1> /dev/null || (cp ~/.bashrc ~/.bashrc.old; cat ${dotfiles_path}/_bashrc ${dotfiles_path}/_color_prompt >> ~/.bashrc)
+        grep "viren-nadkarni" ~/.bashrc 1> /dev/null || (cp ~/.bashrc ~/.bashrc.old; cat ${dotfiles_path}/_bashrc ${dotfiles_path}/_bash_prompt >> ~/.bashrc)
     ;;
 
     "update")
