@@ -1,5 +1,5 @@
 # bash prompt
 if [[ ! -z $BASH ]]; then
-    PS1="\e[93m\u@\h \e[91m\w\e[94m\$git_branch\$git_dirty\e[0m \$ "
+    PS1="\[\033[01;33m\]\u@\h\[\033[m\] \[\033[01;31m\]\w\[\033[m\]\$git_branch\$git_dirty \$ "
 fi
 
