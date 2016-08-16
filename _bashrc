@@ -20,7 +20,7 @@ shopt -s histappend
 # make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-export PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
+export PROMPT_COMMAND="get_git_info; $PROMPT_COMMAND"
 export EDITOR="vim"
 export TERM="xterm-256color"
 
