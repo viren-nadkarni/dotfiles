@@ -34,3 +34,9 @@ alias less='less -r'
 alias diff='colordiff'
 alias tmux='tmux -2'
 
+alias py='python'
+alias wo='workon'
+alias de='deactivate'
+alias mkvenv='mkvirtualenv'
+alias rmvenv='rmvirtualenv'
+

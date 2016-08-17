@@ -19,3 +19,11 @@ get_git_info() {
 
     git_info="$git_branch $git_dirty"
 }
+
+get_virtualenv_info(){
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        virtualenv_info="${VIRTUAL_ENV##*/} "
+    else
+        virtualenv_info=''
+    fi
+}
