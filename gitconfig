@@ -9,12 +9,15 @@
     aa = add --all
     br = branch
     ci = commit
+    cia = commit --amend
     cl = clone --recursive
     co = checkout
     di = diff
     dic = diff --cached
     dih = diff HEAD
-    lg = log --oneline --graph --abbrev-commit --max-count 20
+    lg = log --oneline --graph --abbrev-commit
+    mg = merge
+    pu = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     st = status --short --branch
 
 [color]
