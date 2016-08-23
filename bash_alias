@@ -37,6 +37,10 @@ alias tmux='tmux -2'
 alias py='python'
 alias wo='workon'
 alias de='deactivate'
-alias mkvenv='mkvirtualenv'
-alias rmvenv='rmvirtualenv'
+alias mkenv='mkvirtualenv'
+alias rmenv='rmvirtualenv'
+
+alias djsh='python manage.py shell'
+alias djmig='python manage.py migrate'
+alias djrun='python manage.py runserver'
 

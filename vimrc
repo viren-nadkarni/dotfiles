@@ -1,3 +1,5 @@
+" :options
+"
 " important
 set nocompatible
 set pastetoggle=<F12>
@@ -24,6 +26,7 @@ set background=dark
 set hlsearch
 colorscheme Tomorrow-Night-Bright
 syntax on
+set colorcolumn=81
 filetype plugin indent on
 
 " multiple windows
@@ -47,7 +50,7 @@ set novisualbell                            "don't use visual bell either
 
 " editing text
 set undolevels=1000
-"set textwidth=150                           "line length above which to break a line
+"set textwidth=80                            "line length above which to break a line
 set backspace=indent,eol,start              "specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set showmatch                               "when inserting a bracket, briefly jump to its match
 set nojoinspaces                            "don't use two spaces after '.' when joining a line
@@ -128,6 +131,7 @@ nmap \ :NERDTreeToggle<CR>
 nmap <C-\> :TagbarToggle<CR>
 
 let g:ctrlp_map=';'
+let g:ctrlp_cmd='CtrlPBuffer'
 let g:syntastic_check_on_open=1
 "let g:airline_powerline_fonts=1
 "let g:airline#extensions#tabline#enabled=1
