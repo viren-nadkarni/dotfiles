@@ -2,6 +2,10 @@
 alias df='df -h'
 alias du='du -c -h'
 alias ping='ping -c 4'
+alias wget='wget -c'
+alias j='jobs -l'
+alias ..='cd ..'
+alias ,,='cd -'
 
 if [ $UID -ne 0 ]; then
     alias sudo='sudo -E'            # preserve environment
@@ -35,6 +39,7 @@ alias diff='colordiff'
 alias tmux='tmux -2'
 
 alias py='python'
+alias ipy='ipython'
 alias wo='workon'
 alias de='deactivate'
 alias mkenv='mkvirtualenv'
@@ -43,4 +48,5 @@ alias rmenv='rmvirtualenv'
 alias djsh='python manage.py shell'
 alias djmig='python manage.py migrate'
 alias djrun='python manage.py runserver'
+alias djfl='python manage.py flush'
 

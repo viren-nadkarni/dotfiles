@@ -17,7 +17,8 @@
     dih = diff HEAD
     lg = log --oneline --graph --abbrev-commit
     mg = merge
-    pu = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    psh = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    pl = pull
     st = status --short --branch
 
 [color]
