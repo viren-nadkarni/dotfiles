@@ -15,7 +15,7 @@
     di = diff
     dic = diff --cached
     dih = diff HEAD
-    lg = log --oneline --graph --abbrev-commit
+    lg = log --oneline --graph --abbrev-commit --max-count 25
     mg = merge
     psh = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     pl = pull

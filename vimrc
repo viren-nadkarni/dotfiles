@@ -119,6 +119,7 @@ if has('gui_running')
   endif
 endif
 
+map W w
 map j gj
 map k gk
 map <C-j> <C-W>j
