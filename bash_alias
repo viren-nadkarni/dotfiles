@@ -45,8 +45,3 @@ alias de='deactivate'
 alias mkenv='mkvirtualenv'
 alias rmenv='rmvirtualenv'
 
-alias djsh='python manage.py shell'
-alias djmig='python manage.py migrate'
-alias djrun='python manage.py runserver'
-alias djfl='python manage.py flush'
-

@@ -128,7 +128,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 "map :q :bd
 
-nmap \ :NERDTreeToggle<CR>
+nmap <silent> \ :call NERDTreeHack()<CR>
 nmap <C-\> :TagbarToggle<CR>
 
 let g:ctrlp_map=';'
@@ -142,3 +142,31 @@ let g:syntastic_check_on_open=1
 
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
 "autocmd vimenter * NERDTree
+autocmd WinEnter * call ExitIfNERDTreeLastWindow()
+
+function ExitIfNERDTreeLastWindow()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+function NERDTreeHack()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) == winnr()
+      " current buffer is NERDTree, close it
+      :NERDTreeToggle
+    elseif bufwinnr(t:NERDTreeBufName) != -1
+      " current buffer is not NERDTree, switch focus
+      :NERDTree
+    else
+      :NERDTree
+    endif
+  else
+    " NERDTree is not open
+    :NERDTreeToggle
+  endif
+endfunction
