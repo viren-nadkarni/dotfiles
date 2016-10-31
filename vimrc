@@ -131,6 +131,11 @@ map <C-l> <C-W>l
 nmap <silent> \ :call NERDTreeHack()<CR>
 nmap <C-\> :TagbarToggle<CR>
 
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
 let g:ctrlp_map=';'
 let g:ctrlp_cmd='CtrlPBuffer'
 let g:syntastic_check_on_open=1
