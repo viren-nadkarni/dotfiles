@@ -6,20 +6,32 @@
     editor = vim
 
 [alias]
+    a = add
     aa = add --all
+    bl = blame
     br = branch
     ci = commit
     cia = commit --amend
     cl = clone --recursive
     co = checkout
-    di = diff
-    dic = diff --cached
-    dih = diff HEAD
+    cof = checkout --
+    cp = cherry-pick
+    d = diff
+    dc = diff --cached
+    dh = diff HEAD
+    g = grep
     lg = log --oneline --graph --abbrev-commit --max-count 25
     mg = merge
-    psh = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     pl = pull
+    pt = push --tags origin
+    rt = reset
+    rm = rm
+    sh = stash
+    shl = stash list
+    shp = stash pop
     st = status --short --branch
+    t = tag
 
 [color]
     ui = true
