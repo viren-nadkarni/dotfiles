@@ -1,17 +1,10 @@
-[user]
-    name = Viren Nadkarni
-    email = viren@outlook.com
-
-[core]
-    editor = vim
-
 [alias]
     a = add
     aa = add --all
     bl = blame
     br = branch
-    ci = commit
-    cia = commit --amend
+    ci = commit --verbose
+    cia = commit --verbose --amend
     cl = clone --recursive
     co = checkout
     cof = checkout --
@@ -20,18 +13,33 @@
     dc = diff --cached
     dh = diff HEAD
     g = grep
-    lg = log --oneline --graph --abbrev-commit --max-count 25
+    lg = log --oneline --graph --abbrev-commit --max-count 25 --decorate
     mg = merge
     ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     pl = pull
     pt = push --tags origin
+    ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rt = reset
     rm = rm
+    s = show
     sh = stash
+    shd = stash drop
     shl = stash list
     shp = stash pop
+    shs = stash show --patch
     st = status --short --branch
     t = tag
+    td = tag -d
 
 [color]
     ui = true
+
+[core]
+    editor = vim
+
+[fetch]
+    prune = true
+
+[user]
+    name = Viren Nadkarni
+    email = viren@outlook.com
