@@ -5,26 +5,26 @@ get_git_info() {
         if [[ "$branch" == "HEAD" ]]; then
             branch="<detached>"
         fi
-        git_branch="$branch"
+        git_branch=" $branch "
     else
         git_branch=""
     fi
 
     local status=$(git status --porcelain 2> /dev/null)
     if [[ "$status" != "" ]]; then
-        git_dirty="*"
+        git_dirty="+"
     else
         git_dirty=""
     fi
 
-    git_info="$git_branch $git_dirty"
+    git_info="$git_dirty$git_branch"
 }
 
 get_virtualenv_info(){
     if [[ -n "$VIRTUAL_ENV" ]]; then
         virtualenv_info="${VIRTUAL_ENV##*/} "
     else
-        virtualenv_info=''
+        virtualenv_info=""
     fi
 }
 
