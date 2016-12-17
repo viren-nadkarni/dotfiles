@@ -137,23 +137,22 @@ nmap <C-\> :TagbarToggle<CR>
 :command Q q
 
 let g:ctrlp_map=';'
-let g:ctrlp_cmd='CtrlPBuffer'
-let g:syntastic_check_on_open=1
-"let g:airline_powerline_fonts=1
-"let g:airline#extensions#tabline#enabled=1
-"let g:tagbar_ctags_bin='C:\ctags58\ctags.exe'
-"let g:tagbar_width=30
+let g:ctrlp_cmd='CtrlP'
 "let g:ctrlp_working_path_mode='c'
+let g:syntastic_check_on_open=1
+"let g:tagbar_width=30
+let g:airline_powerline_fonts=1
+"let g:airline#extensions#tabline#enabled=1
 
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
 "autocmd vimenter * NERDTree
-autocmd WinEnter * call ExitIfNERDTreeLastWindow()
+autocmd WinEnter * call ExitIfNERDTreeIsLastWindow()
 
-function ExitIfNERDTreeLastWindow()
+function ExitIfNERDTreeIsLastWindow()
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) != -1
       if winnr("$") == 1
-        q
+        quit
       endif
     endif
   endif
@@ -163,12 +162,12 @@ function NERDTreeHack()
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) == winnr()
       " current buffer is NERDTree, close it
-      :NERDTreeToggle
-    elseif bufwinnr(t:NERDTreeBufName) != -1
-      " current buffer is not NERDTree, switch focus
-      :NERDTree
+      unlet t:NERDTreeBufName
+      quit
     else
-      :NERDTree
+      " current buffer is not NERDTree, switch focus
+      let nr = bufwinnr(t:NERDTreeBufName)
+      execute nr . "wincmd w"
     endif
   else
     " NERDTree is not open
