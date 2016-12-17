@@ -1,12 +1,4 @@
 
-alias df='df -h'
-alias du='du -c -h'
-alias ping='ping -c 4'
-alias wget='wget -c'
-alias j='jobs -l'
-alias ..='cd ..'
-alias ,,='cd -'
-
 if [ $UID -ne 0 ]; then
     alias sudo='sudo -E'            # preserve environment
     alias scat='sudo cat'
@@ -34,15 +26,36 @@ alias ln='ln -i'
 alias grep='grep --colour=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias rgrep='rgrep --color=auto -in'
 
 alias less='less -r'
 alias diff='colordiff'
-alias tmux='tmux -2'
+alias tmux='tmux -2u'
+alias df='df -h'
+alias du='du -c -h'
+alias ping='ping -c 4'
+alias wget='wget -c'
+alias wdiff='wdiff -w "$(tput bold;tput setaf 1)" -x "$(tput sgr0)" -y "$(tput bold;tput setaf 2)" -z "$(tput sgr0)"'
+
+alias cb='xclip -selection c'
+alias mounts='mount | column -t'
+alias psgrep='ps -ef | grep -v grep | grep -i --color=auto'
+
+alias j='jobs -l'
+alias f='fg'
+alias b='bg'
+
+alias ..='cd ..'
+alias ,,='cd -'
 
 alias py='python'
 alias ipy='ipython'
+alias serve='hostname -I; python -m SimpleHTTPServer'
 alias wo='workon'
 alias de='deactivate'
 alias mkenv='mkvirtualenv'
 alias rmenv='rmvirtualenv'
+alias djsh='python manage.py shell_plus'
+alias djmig='python manage.py migrate'
+alias djmkmig='python manage.py makemigrations'
 

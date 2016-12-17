@@ -27,3 +27,7 @@ get_virtualenv_info(){
         virtualenv_info=''
     fi
 }
+
+to_gif(){
+    ffmpeg -i "$1" -pix_fmt rgb8 "$2"
+}
