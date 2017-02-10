@@ -2,12 +2,13 @@
 # do nothing if not running interactively
 [[ $- != *i* ]] && return
 
-# don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth
+# do not put duplicate lines or lines starting with space in the history
+# also erase prior duplicates
+HISTCONTROL=ignoreboth:erasedups
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=2048
-HISTFILESIZE=4096
+HISTSIZE=5120
+HISTFILESIZE=5120
 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS
 shopt -s checkwinsize
@@ -20,7 +21,8 @@ shopt -s histappend
 # make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-export PROMPT_COMMAND="get_git_info; get_virtualenv_info; $PROMPT_COMMAND"
+# append history to make it searchable across parallel sessions
+export PROMPT_COMMAND="history -a; get_git_info; get_virtualenv_info; $PROMPT_COMMAND"
 export EDITOR="vim"
 export TERM="xterm-256color"
 

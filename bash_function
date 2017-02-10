@@ -20,7 +20,7 @@ get_git_info() {
     git_info="$git_dirty$git_branch"
 }
 
-get_virtualenv_info(){
+get_virtualenv_info() {
     if [[ -n "$VIRTUAL_ENV" ]]; then
         virtualenv_info="${VIRTUAL_ENV##*/} "
     else
@@ -28,6 +28,15 @@ get_virtualenv_info(){
     fi
 }
 
-to_gif(){
+togif() {
     ffmpeg -i "$1" -pix_fmt rgb8 "$2"
+}
+
+randstr() {
+    LEN=$1
+    [[ -z "$LEN" ]] && LEN=32
+
+    SET='abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789'
+
+    cat /dev/urandom | tr -dc $SET | fold -w $LEN | head -n 1
 }
