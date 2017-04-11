@@ -26,7 +26,7 @@ set background=dark
 set hlsearch
 colorscheme Tomorrow-Night-Bright
 syntax on
-set colorcolumn=81
+set colorcolumn=80
 filetype plugin indent on
 
 " multiple windows
