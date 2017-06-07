@@ -6,8 +6,9 @@ pnmtojpeg out.pnm > out.jpeg
 qpdf -decrypt -password=coldplay in.pdf out.pdf
 
 # delete garbage metadata
-find . -iname thumbs.db -delete \
-    -o -iname desktop.ini -delete \
-    -o -iname .ds_store -delete \
-    -o -iname folder.jp*g -delete \
-    -o -iname albumart*.jp*g -delete
+find . -iname thumbs.db -delete -o -iname desktop.ini -delete -o -iname .ds_store -delete -o -iname folder.jp*g -delete -o -iname albumart*.jp*g -delete
+
+# backup
+# trailing slashes are REQUIRED
+rsync -hav --delete-after --progress -n /data/music/ /media/viren/ntfs-passport/music/
+rsync -hav --progress -n /data/photos/ /media/viren/ntfs-passport/photos/
