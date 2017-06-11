@@ -50,7 +50,7 @@ alias ,,='cd -'
 
 alias py='python3'
 alias ipy='ipython3'
-alias serve='hostname -I; python3 -m SimpleHTTPServer'
+alias serve='hostname -I; python3 -m http.server'
 alias wo='workon'
 alias de='deactivate'
 alias mkvenv='mkvirtualenv'
