@@ -131,6 +131,12 @@ map <C-l> <C-W>l
 nmap <silent> \ :call NERDTreeHack()<CR>
 nmap <C-\> :TagbarToggle<CR>
 
+" make search results appear in the centre of the screen
+:nnoremap n nzz
+:nnoremap N Nzz
+:nnoremap * *zz
+:nnoremap # #zz
+
 :command WQ wq
 :command Wq wq
 :command W w
