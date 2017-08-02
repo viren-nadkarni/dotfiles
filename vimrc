@@ -119,6 +119,11 @@ if has('gui_running')
   endif
 endif
 
+" setup powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
 map W w
 map j gj
 map k gk
@@ -145,10 +150,8 @@ nmap <C-\> :TagbarToggle<CR>
 let g:ctrlp_map=';'
 let g:ctrlp_cmd='CtrlP'
 "let g:ctrlp_working_path_mode='c'
-let g:syntastic_check_on_open=1
+"let g:syntastic_check_on_open=1
 "let g:tagbar_width=30
-let g:airline_powerline_fonts=1
-"let g:airline#extensions#tabline#enabled=1
 
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
 "autocmd vimenter * NERDTree

@@ -3,7 +3,7 @@ set -xeuo pipefail
 #IFS=$'\n\t'
 
 dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-files="bash_alias bash_function curlrc gdbinit gitconfig tmux.conf vim vimrc wgetrc"
+files="bash_alias bash_function bashrc curlrc gdbinit gitconfig tmux.conf vim vimrc wgetrc"
 
 function print_help {
     cat <<EOF
@@ -11,6 +11,7 @@ Usage: $0 <operation>
 Operations:
    install
    uninstall
+   update
 EOF
 }
 
@@ -22,6 +23,15 @@ fi
 
 case $operation in
     "install")
+        sudo apt install -y vim tmux python3-pip wdiff colordiff
+        sudo -H pip3 install powerline-status
+        cat <<- EOF > ~/.ipython/profile_default/ipython_config.py
+        c = get_config()
+        c.InteractiveShellApp.extensions = [
+            'powerline.bindings.ipython.post_0_11'
+        ]
+        EOF
+
         cd $dotfiles_path
 
         git submodule update --init --recursive
@@ -29,17 +39,25 @@ case $operation in
         for file in $files; do
             if [ -a ~/.${file} ]; then
                 if [ -a ~/.${file}.old ]; then
-                    echo ".${file} not backed up because .${file}.old exists"
+                    echo "Skipping '.${file}' as '.${file}.old' exists"
                 else
-                    echo "Backed up .${file} -> .${file}.old"
+                    echo "Backed up '.${file}' to '.${file}.old'"
                     mv ~/.${file} ~/.${file}.old
                 fi
             fi
 
+            if [ ${file} == "bashrc" ]; then
+                if grep "viren-nadkarni" ~/.bashrc 1> /dev/null; then
+                    echo "Skipping '.bashrc' append"
+                    continue
+                else
+                    cat ${dotfiles_path}/bashrc >> ~/.bashrc
+                    continue
+                fi
+            fi
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
 
-        grep "viren-nadkarni" ~/.bashrc 1> /dev/null || (cp ~/.bashrc ~/.bashrc.old; cat ${dotfiles_path}/_bashrc ${dotfiles_path}/_bash_prompt >> ~/.bashrc)
     ;;
 
     "update")
@@ -47,7 +65,6 @@ case $operation in
     ;;
 
     "uninstall"|"remove")
-        files="${files} bashrc"
         for file in $files; do
             rm -r ~/.${file}
 

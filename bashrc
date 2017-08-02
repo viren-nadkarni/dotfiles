@@ -1,4 +1,5 @@
-# github.com/viren-nadkarni/dotfiles
+
+# https://github.com/viren-nadkarni/dotfiles
 # do nothing if not running interactively
 [[ $- != *i* ]] && return
 
@@ -22,14 +23,13 @@ shopt -s histappend
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # append history to make it searchable across parallel sessions
-export PROMPT_COMMAND="history -a; get_git_info; get_virtualenv_info; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export EDITOR="vim"
 export TERM="xterm-256color"
 
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+# virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-
 [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 [ -r $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
 
@@ -44,4 +44,10 @@ export PROJECT_HOME=$HOME/Devel
 
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune; echo)
+
+# powerline
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+source /usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh
 
