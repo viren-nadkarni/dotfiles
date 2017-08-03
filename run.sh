@@ -70,7 +70,7 @@ EOT
 
             if [ -a ~/.${file}.old ]; then
                 mv ~/.${file}.old ~/.${file}
-                echo "Restored .${file}.old -> .${file}"
+                echo "Restored '.${file}'"
             fi
         done
     ;;

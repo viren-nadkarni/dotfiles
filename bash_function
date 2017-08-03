@@ -1,8 +1,14 @@
 randstr() {
     LEN=$1
     [[ -z "$LEN" ]] && LEN=32
-
     SET='abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789'
-
     cat /dev/urandom | tr -dc $SET | fold -w $LEN | head -n 1
+}
+
+scan() {
+    scanimage --resolution 300 --mode Color --device pixma > out.pnm
+    OUTJPEG=out-$(date +%s).jpeg
+    pnmtojpeg out.pnm > $OUTJPEG
+    rm out.pnm
+    echo "Saved to $OUTJPEG"
 }
