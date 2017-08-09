@@ -1,0 +1,56 @@
+{
+	"segments": {
+        "above": [
+            {
+                "left": [
+                    {
+                        "function": "powerline.segments.common.net.hostname"
+                    },
+                    {
+                        "function": "powerline.segments.common.env.user"
+                    },
+                    {
+                        "function": "powerline.segments.shell.cwd",
+                        "args": {
+                            "dir_limit_depth": 0,
+                            "dir_shorten_len": 0,
+                            "shorten_home": true,
+                            "use_path_separator": true
+                        }
+                    },
+                    {
+                        "function": "powerline.segments.common.env.virtualenv"
+                    },
+                    {
+                        "function": "powerline.segments.common.vcs.branch",
+                        "args": {
+                            "status_colors": true
+                        }
+
+                    },
+                    {
+                        "function": "powerline.segments.common.time.date",
+                        "priority": 10,
+                        "args": {
+                            "format": "%I:%M:%S %p",
+                            "istime": true
+                        }
+                    }
+                ]
+            }
+        ],
+        "left": [
+            {
+                "function": "powerline.segments.shell.jobnum"
+            },
+            {
+                "function": "powerline.segments.shell.last_status"
+            },
+            {
+                "type": "string",
+                "contents": "$",
+                "highlight_groups": ["branch"]
+            }
+        ]
+	}
+}
