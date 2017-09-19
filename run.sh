@@ -25,12 +25,6 @@ case $operation in
     "install")
         sudo apt install -y colordiff fonts-powerline python3-pip wdiff
         sudo -H pip3 install powerline-status
-        cat <<- EOT > ~/.ipython/profile_default/ipython_config.py
-        c = get_config()
-        c.InteractiveShellApp.extensions = [
-            'powerline.bindings.ipython.post_0_11'
-        ]
-EOT
 
         cd $dotfiles_path
 
