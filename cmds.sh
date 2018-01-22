@@ -15,3 +15,10 @@ rsync --human-readable --archive --verbose --progress --dry-run --progress -n /d
 
 # convert to gif
 ffmpeg -i input -pix_fmt rgb8 output
+
+# gpg
+gpg --import key
+gpg --fingerprint
+gpg --list-keys
+gpg --encrypt --armor --recipient name
+gpg --decrypt file
