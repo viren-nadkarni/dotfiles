@@ -22,3 +22,9 @@ gpg --fingerprint
 gpg --list-keys
 gpg --encrypt --armor --recipient name
 gpg --decrypt file
+
+# sort processes by cpu usage
+ps aux | sort -n -r -k 3
+
+# ssh tunnel
+ssh -D 8080 root@159.89.170.20
