@@ -5,13 +5,16 @@ pnmtojpeg out.pnm > out.jpeg
 # decrypt pdf
 qpdf -decrypt -password=coldplay input.pdf output.pdf
 
+# extract jpegs from pdf
+pdfimages -j file.pdf ./
+
 # delete garbage metadata
 find . -iname thumbs.db -delete -o -iname desktop.ini -delete -o -iname .ds_store -delete -o -iname folder.jp*g -delete -o -iname albumart*.jp*g -delete
 
 # backup
 # trailing slashes are REQUIRED
 rsync --human-readable --archive --verbose --delete-after --progress --dry-run /data/music/ /media/viren/ntfs-passport/music/
-rsync --human-readable --archive --verbose --progress --dry-run --progress -n /data/photos/ /media/viren/ntfs-passport/photos/
+rsync --human-readable --archive --verbose --progress --dry-run /data/photos/ /media/viren/ntfs-passport/photos/
 
 # convert to gif
 ffmpeg -i input -pix_fmt rgb8 output
@@ -22,6 +25,7 @@ gpg --fingerprint
 gpg --list-keys
 gpg --encrypt --armor --recipient name
 gpg --decrypt file
+gpg --clearsign file
 
 # sort processes by cpu usage
 ps aux | sort -n -r -k 3
