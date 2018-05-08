@@ -5,6 +5,9 @@ pnmtojpeg out.pnm > out.jpeg
 # decrypt pdf
 qpdf -decrypt -password=coldplay input.pdf output.pdf
 
+# merge pdfs
+pdftk part1.pdf part2.pdf cat output merged.pdf
+
 # extract jpegs from pdf
 pdfimages -j file.pdf ./
 
