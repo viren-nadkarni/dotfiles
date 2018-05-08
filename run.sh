@@ -45,7 +45,7 @@ case $operation in
                     echo "Skipping '.bashrc' append"
                     continue
                 else
-                    cat ${dotfiles_path}/bashrc >> ~/.bashrc
+                    cat ${dotfiles_path}/bashrc ${dotfiles_path}/_bash_prompt_powerline >> ~/.bashrc
                     continue
                 fi
             fi

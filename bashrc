@@ -45,9 +45,3 @@ export PROJECT_HOME=$HOME/Devel
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune; echo)
 
-# powerline
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-source /usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh
-

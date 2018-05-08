@@ -1,0 +1,12 @@
+if [[ ! -z $BASH ]]; then
+    if tty | grep "/dev/tty[0-9]*" &> /dev/null; then
+        PS1="\n\[\033[01;33m\]\u@\h \[\033[01;31m\]\w \[\033[01;30m\]\D{%I:%M:%S %p}\n\$ "
+    else
+        powerline-daemon -q
+        POWERLINE_BASH_CONTINUATION=1
+        POWERLINE_BASH_SELECT=1
+        source /usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh
+    fi
+fi
+
+
