@@ -1,3 +1,33 @@
+get_git_info() {
+    # based on: http://stackoverflow.com/a/13003854/170413
+    local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ "$branch" != "" ]]; then
+        if [[ "$branch" == "HEAD" ]]; then
+            branch="<detached>"
+        fi
+        git_branch="$branch"
+    else
+        git_branch=""
+    fi
+
+    local status=$(git status --porcelain 2> /dev/null)
+    if [[ "$status" != "" ]]; then
+        git_dirty="*"
+    else
+        git_dirty=""
+    fi
+
+    git_info="$git_branch $git_dirty"
+}
+
+get_virtualenv_info(){
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        virtualenv_info="${VIRTUAL_ENV##*/} "
+    else
+        virtualenv_info=''
+    fi
+}
+
 randstr() {
     LEN=$1
     [[ -z "$LEN" ]] && LEN=32

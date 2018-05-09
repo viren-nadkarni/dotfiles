@@ -23,8 +23,7 @@ fi
 
 case $operation in
     "install")
-        sudo apt install -y colordiff fonts-powerline python3-pip wdiff
-        sudo -H pip3 install powerline-status
+        sudo apt install -y colordiff wdiff fonts-powerline
 
         cd $dotfiles_path
 
@@ -45,7 +44,7 @@ case $operation in
                     echo "Skipping '.bashrc' append"
                     continue
                 else
-                    cat ${dotfiles_path}/bashrc ${dotfiles_path}/_bash_prompt_powerline >> ~/.bashrc
+                    cat ${dotfiles_path}/bashrc ${dotfiles_path}/_bash_prompt >> ~/.bashrc
                     continue
                 fi
             fi
