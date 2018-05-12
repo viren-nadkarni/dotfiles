@@ -35,3 +35,12 @@ ps aux | sort -n -r -k 3
 
 # ssh tunnel
 ssh -D 8080 root@159.89.170.20
+
+# wireless
+wpa_passphrase <ssid> <passphrase> > /etc/wpa_supplicant/wireless.conf
+wpa_supplicant -i <interface> -c /etc/wpa_supplicant/wireless.conf -D wext
+dhclient <interface>
+nmcli radio wifi on
+nmcli dev status
+nmcli dev wifi list
+nmcli dev wifi connect <ssid> password <passphrase>

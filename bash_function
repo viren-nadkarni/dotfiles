@@ -42,3 +42,7 @@ scan() {
     rm out.pnm
     echo "Saved to $OUTJPEG"
 }
+
+pscpu() {
+    ps aux | sort -n -r -k 3 | head -n 10
+}
