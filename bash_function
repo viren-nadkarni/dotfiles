@@ -44,5 +44,9 @@ scan() {
 }
 
 pscpu() {
-    ps aux | sort -n -r -k 3 | head -n 10
+    ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
+}
+
+psmem() {
+    ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
 }
