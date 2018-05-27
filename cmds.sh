@@ -44,3 +44,7 @@ nmcli radio wifi on
 nmcli dev status
 nmcli dev wifi list
 nmcli dev wifi connect <ssid> password <passphrase>
+
+# mount options
+sudo mount -o remount,rw /partition/identifier /mount/point	# remount as rw
+sudo mount -o uid=$USER,gid=$GROUPS,dmask=022,fmask=133 /dev/sdb1 /media/viren/ntfs-passport
