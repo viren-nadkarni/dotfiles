@@ -139,8 +139,8 @@ bar {
 }
 
 bindsym F5 exec i3lock -c 000000
-bindsym F6 exec xbacklight -dec 10
-bindsym F7 exec xbacklight -inc 10
+bindsym F6 exec xbacklight -dec 5
+bindsym F7 exec xbacklight -inc 5
 bindsym F8 exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym F9 exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym F10 exec --no-startup-id pactl set-sink-volume 0 +5%

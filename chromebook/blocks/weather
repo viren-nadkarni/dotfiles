@@ -3,9 +3,27 @@
 import requests
 import json
 
+icons = {
+#    'clear-day': '',
+    'clear-night': '',
+#    'rain': '',
+    'snow': '',
+#    'sleet': '',
+#    'wind': '',
+#    'fog': '',
+    'cloudy': '',
+#    'partly-cloudy-day': '',
+#    'partly-cloudy-night': '',
+}
+
+
 resp = requests.get("https://api.forecast.io/forecast/089a6629f547f7c0545b3e3506fb3cb4/57.69,11.98?units=si")
 j = json.loads(resp.text)
 
-print('{}°C ({})'.format(round(j['currently']['apparentTemperature']), j['hourly']['summary'].strip('.')))
+print('{}{}°C ({})'.format(
+    icons.get(j['currently']['icon'] + ' ', ''),
+    round(j['currently']['apparentTemperature']),
+    j['hourly']['summary'].split(',')[0].strip('.'))
+)
 print('{}°C'.format(round(j['currently']['apparentTemperature'])))
 
