@@ -47,4 +47,11 @@ nmcli dev wifi connect <ssid> password <passphrase>
 
 # mount options
 sudo mount -o remount,rw /partition/identifier /mount/point	# remount as rw
-sudo mount -o uid=$USER,gid=$GROUPS,dmask=022,fmask=133 /dev/sdb1 /media/viren/ntfs-passport
+sudo mount -o uid=$USER,gid=$GROUPS,dmask=022,fmask=133 /dev/sdb1 /media/viren/ntfs-hd
+
+# fix borked up perms
+find ./path -type d -exec chmod 775 '{}' \;
+find ./path -type f -exec chmod 664 '{}' \;
+
+# git
+git reset HEAD~     # undo last commit
