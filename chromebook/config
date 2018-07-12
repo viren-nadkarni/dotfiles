@@ -116,8 +116,6 @@ mode "resize" {
 
 bindsym $mod+r              mode "resize"
 
-new_window 1pixel
-
 set $t_background           #000000
 set $t_current_line         #2a2a2a
 set $t_selection            #424242
@@ -136,22 +134,23 @@ bar {
     position                top
     font                    pango:Hack, Font Awesome 10
     colors {
-        separator           $t_selection
-        background          $t_background
-        statusline          $t_foreground
+        separator           #3a3a3a
+        background          #1c1c1c
+        statusline          #e4e4e4
 
         # <border> <background> <text>
-        focused_workspace   $t_blue $t_blue $t_background
+        focused_workspace   #7aa6da #7aa6da $t_background
         active_workspace    $t_green $t_green $t_foreground
         inactive_workspace  $t_current_line $t_current_line $t_foreground
-        urgent_workspace    $t_red $t_red $t_foreground
+        urgent_workspace    $t_red $t_red $t_background
     }
 }
 
-client.focused              #7aa6da #7aa6da #ffffff #dddddd
-client.focused_inactive     #333333 #333333 #888888 #2d2d2d
-client.unfocused            #333333 #333333 #888888 #2d2d2d
-client.urgent               #3a3a3a #d54e53 #ffffff #d54e53
+# <border> <background> <text> <indicator> <child_border>
+client.focused              #7aa6da #7aa6da #000000 #dddddd
+client.focused_inactive     #1c1c1c #1c1c1c #888888 #2d2d2d
+client.unfocused            #1c1c1c #1c1c1c #888888 #2d2d2d
+client.urgent               #d54e53 #d54e53 #000000 #d54e53
 
 # Chromebook-specific stuff
 bindsym F5                  exec i3lock -c 000000
