@@ -54,7 +54,7 @@ bindsym $mod+o split h
 bindsym $mod+p split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+z fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -130,20 +130,53 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Hide window title bars
+new_window 1pixel
+
+# Colours
+set $t_background #000000
+set $t_current_line #2a2a2a
+set $t_selection #424242
+set $t_foreground #eaeaea
+set $t_comment #969896
+set $t_red #d54e53
+set $t_orange #e78c45
+set $t_yellow #e7c547
+set $t_green #b9ca4a
+set $t_aqua #70c0b1
+set $t_blue #7aa6da
+set $t_purple #c397d8
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     status_command i3blocks
     position top
     font pango:Hack, Font Awesome 10
+    colors {
+        separator           $t_selection
+        background          $t_background
+        statusline          $t_foreground
+
+        # <border> <background> <text>
+        focused_workspace   $t_blue $t_blue $t_background
+        active_workspace    $t_green $t_green $t_foreground
+        inactive_workspace  $t_current_line $t_current_line $t_foreground
+        urgent_workspace    $t_red $t_red $t_foreground
+    }
 }
 
+client.focused $t_blue $t_blue #ffffff #dddddd
+client.focused_inactive #333333 #333333 #888888 #2d2d2d
+client.unfocused #333333 #333333 #888888 #2d2d2d
+client.urgent #3a3a3a $t_red #ffffff $t_red
+
+# Chromebook-specific stuff
 bindsym F5 exec i3lock -c 000000
 bindsym F6 exec xbacklight -dec 5
 bindsym F7 exec xbacklight -inc 5
 bindsym F8 exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym F9 exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym F10 exec --no-startup-id pactl set-sink-volume 0 +5%
-
 exec --no-startup-id redshift
 exec --no-startup-id bash /home/viren/dotfiles/chromebook/startup.sh
