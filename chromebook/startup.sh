@@ -19,7 +19,7 @@ xmodmap -e "add Control = Control_L"
 xmodmap -e "add Mod4 = Super_L Super_R"
 
 # touchpad tweaks
-xinput set-button-map 14 1 2 3 4 5
-xinput set-prop 14 275 1
+xinput set-button-map 11 1 2 3 4 5
+xinput set-prop 11 275 1
 
 #export XDG_SESSION_TYPE="${XDG_SESSION_TYPE:-"x11"}"
