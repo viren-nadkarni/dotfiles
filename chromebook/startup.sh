@@ -4,7 +4,7 @@ dropbox start
 libinput-gestures-setup start
 
 # remap caps to ctrl
-setxkbmap -option ctrl:nocaps
+setxkbmap eu -option ctrl:nocaps
 
 # make the uk layout a bit more tolerable
 xmodmap -e 'keycode 51=Return'
