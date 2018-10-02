@@ -23,7 +23,7 @@ fi
 
 case $operation in
     "install")
-        sudo apt install -y colordiff wdiff fonts-powerline #wmctrl
+        sudo apt install -y colordiff wdiff fonts-powerline
 
         cd $dotfiles_path
 
@@ -51,7 +51,6 @@ case $operation in
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
 
-        echo "https://github.com/gioele/vim-autoswap"
     ;;
 
     "update")

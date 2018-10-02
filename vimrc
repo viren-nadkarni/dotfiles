@@ -19,8 +19,6 @@ set scrolloff=4                             "number of screen lines to show arou
 set wrap
 set cmdheight=2                             "number of lines used for the command-line
 set lazyredraw                              "don't redraw while executing macros
-set list
-set listchars=tab:▸\ ,trail:·
 set number
 
 " syntax, highlighting and spelling
