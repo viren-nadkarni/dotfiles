@@ -40,6 +40,7 @@ alias wdiff='wdiff -w "$(tput bold;tput setaf 1)" -x "$(tput sgr0)" -y "$(tput b
 alias cb='xclip -selection c'
 alias mounts='mount | column -t'
 alias psgrep='ps -ef | grep -v grep | grep -i --color=auto'
+alias free='free -h'
 
 alias j='jobs -l'
 alias f='fg'
@@ -49,7 +50,10 @@ alias ..='cd ..'
 alias ,,='cd -'
 
 alias py='python3'
+alias py3='py'
 alias ipy='ipython3'
+alias ipy3='ipy'
+alias pip='pip3'
 alias serve='hostname -I; python3 -m http.server'
 alias wo='workon'
 alias de='deactivate'

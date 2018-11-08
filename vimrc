@@ -152,6 +152,7 @@ let g:ctrlp_cmd='CtrlP'
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
 "autocmd vimenter * NERDTree
 autocmd WinEnter * call ExitIfNERDTreeIsLastWindow()
+autocmd BufRead *.html setlocal tabstop=2 shiftwidth=2
 
 function ExitIfNERDTreeIsLastWindow()
   if exists("t:NERDTreeBufName")
