@@ -45,5 +45,5 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -r ~/.bash_alias ] && source ~/.bash_alias
 
 # fortune
-#[ -x /usr/games/fortune ] && (echo; fortune; echo)
+#[ -x /usr/games/fortune ] && (echo; fortune zippy; echo)
 
