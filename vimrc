@@ -20,15 +20,15 @@ set wrap
 set cmdheight=2                             "number of lines used for the command-line
 set lazyredraw                              "don't redraw while executing macros
 set number
-set relativenumber
+"set relativenumber
 
 " syntax, highlighting and spelling
 set background=dark
 set hlsearch
 colorscheme Tomorrow-Night-Bright
 syntax on
-set cursorline
-set cursorcolumn                            "highlight column of the cursor
+"set cursorline
+"set cursorcolumn                            "highlight column of the cursor
 
 set colorcolumn=80
 filetype plugin indent on
