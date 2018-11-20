@@ -1,0 +1,22 @@
+host cb
+    HostName 192.168.1.12
+
+host raspi
+    HostName 192.168.1.13
+    User root
+
+host cth1
+    HostName remote11.chalmers.se
+    User nadkarni
+    IdentityFile ~/.ssh/id_rsa
+    ForwardX11 yes
+
+host cth2
+    HostName remote12.chalmers.se
+    User nadkarni
+    IdentityFile ~/.ssh/id_rsa
+    ForwardX11 yes
+
+host lf
+    Hostname 46.101.176.171
+    User root

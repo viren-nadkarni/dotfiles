@@ -27,8 +27,8 @@ set background=dark
 set hlsearch
 colorscheme Tomorrow-Night-Bright
 syntax on
-"set cursorline
-"set cursorcolumn                            "highlight column of the cursor
+set cursorline
+set cursorcolumn                            "highlight column of the cursor
 
 set colorcolumn=80
 filetype plugin indent on

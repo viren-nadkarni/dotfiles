@@ -16,9 +16,16 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
-export GDK_SCALE=1.5
-export GDK_DPI_SCALE=1.5
-export QT_AUTO_SCREEN_SCALE_FACTOR=1.5
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+#export GDK_SCALE=1.5
+#export GDK_DPI_SCALE=1.5
+#export QT_AUTO_SCREEN_SCALE_FACTOR=1.5

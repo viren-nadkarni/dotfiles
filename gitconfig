@@ -16,7 +16,7 @@
     lg = log --oneline --graph --abbrev-commit --max-count 25 --decorate
     mg = merge
     ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
-    pl = pull
+    pl = pull origin master
     pt = push --tags origin
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rt = reset
