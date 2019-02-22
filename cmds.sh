@@ -29,6 +29,12 @@ gpg --list-keys
 gpg --encrypt --armor --recipient name
 gpg --decrypt file
 gpg --clearsign file
+gpg --edit-key ABCDEF
+  > expiry
+  > key 1
+  > save
+gpg --send-keys --keyserver hkps://hkps.pool.sks-keyservers.net 9CCF7D6898E84F1926CDC01DDD2870265E495EAB
+gpg --export-secret-keys > keyfile && gpg2 --import keyfile
 
 # sort processes by cpu usage
 ps aux | sort -n -r -k 3
