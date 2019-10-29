@@ -135,10 +135,6 @@ map <C-l> <C-W>l
 nmap <silent> \ :call NERDTreeHack()<CR>
 nmap <C-\> :TagbarToggle<CR>
 
-" navigate between lint errors
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
 " make search results appear in the centre of the screen
 :nnoremap n nzz
 :nnoremap N Nzz
@@ -150,13 +146,21 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 :command W w
 :command Q q
 
-let g:ale_lint_on_text_changed = 'never'
+map <leader>d :ALEGoToDefinition
+map <leader>r :ALEFindReferences
+
+"let g:ale_lint_on_text_changed = 'never'
+let g:ale_completion_enabled = 1
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
+
 let g:ctrlp_map = ';'
 let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_working_path_mode = 'c'
+"
 "let g:syntastic_check_on_open = 1
+"
 "let g:tagbar_width = 30
 
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
