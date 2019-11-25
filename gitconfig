@@ -16,7 +16,7 @@
     lg = log --oneline --graph --abbrev-commit --max-count 25 --decorate
     mg = merge
     ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
-    pl = pull origin master
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
     pt = push --tags origin
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rt = reset
@@ -43,3 +43,12 @@
 [user]
     name = Viren Nadkarni
     email = viren.nadkarni@gmail.com
+
+[diff]
+    tool = vimdiff
+
+[merge]
+    tool = vimdiff
+
+[rebase]
+    autoStash = true

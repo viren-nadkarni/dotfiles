@@ -47,6 +47,8 @@ alias f='fg'
 alias b='bg'
 
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ,,='cd -'
 
 alias py='python3'
