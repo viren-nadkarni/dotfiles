@@ -22,8 +22,6 @@ fi
 
 case $operation in
     "install")
-        sudo apt install -y colordiff wdiff fonts-powerline
-
         cd $dotfiles_path
 
         git submodule update --init --recursive
@@ -49,6 +47,21 @@ case $operation in
             fi
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
+
+        echo
+        echo "Complete plugin install in Vim with"
+        echo "  :PlugInstall"
+        echo
+        echo "Install manually"
+        echo "bat       https://github.com/sharkdp/bat"
+        echo "          https://github.com/eth-p/bat-extras"
+        echo "exa       https://github.com/ogham/exa"
+        echo "ripgrep   https://github.com/BurntSushi/ripgrep"
+        echo "fzf       https://github.com/junegunn/fzf"
+        echo "fd        https://github.com/sharkdp/fd"
+        echo
+        echo "sudo apt install -y colordiff wdiff fonts-powerline"
+        echo
 
     ;;
 

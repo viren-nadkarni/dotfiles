@@ -60,6 +60,5 @@ find ./path -type d -exec chmod 775 '{}' \;
 find ./path -type f -exec chmod 664 '{}' \;
 
 # git
-git reset HEAD~     # undo last commit
-
-nmcli con add type wifi con-name 'SGS-Student' ssid 'SGS-Student' -- wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.identity '503002303' 802-1x.private-key-password '4JGi1OxV' ifname wlp2s0 802-1x.phase2-auth mschapv2
+git reset HEAD~n        # undo last n commits
+git branch -m new-name  # rename branch
