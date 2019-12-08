@@ -3,8 +3,32 @@
 " important
 set nocompatible
 set pastetoggle=<F12>
+
 let mapleader=','
-execute pathogen#infect()
+
+" plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+"Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+"Plug 'dense-analysis/ale'
+Plug 'vim-syntastic/syntastic'
+
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
+
+Plug 'davidhalter/jedi-vim' ", { 'for': 'python' }
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'pangloss/vim-javascript'
+
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
 
 " moving around, searching and patterns
 set whichwrap+=<,>,[,]
@@ -146,11 +170,10 @@ nmap <C-\> :TagbarToggle<CR>
 :command W w
 :command Q q
 
-map <leader>d :ALEGoToDefinition
-map <leader>r :ALEFindReferences
-
+"map <leader>d :ALEGoToDefinition
+"ap <leader>r :ALEFindReferences
 "let g:ale_lint_on_text_changed = 'never'
-let g:ale_completion_enabled = 1
+"let g:ale_completion_enabled = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
@@ -158,9 +181,16 @@ let g:airline#extensions#ale#enabled = 1
 let g:ctrlp_map = ';'
 let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_working_path_mode = 'c'
-"
-"let g:syntastic_check_on_open = 1
-"
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']
+
 "let g:tagbar_width = 30
 
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen

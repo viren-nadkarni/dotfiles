@@ -11,7 +11,6 @@ Usage: $0 <operation>
 Operations:
    install
    uninstall
-   update
 EOF
 }
 
@@ -51,10 +50,6 @@ case $operation in
             cp -r ${dotfiles_path}/${file} ~/.${file}
         done
 
-    ;;
-
-    "update")
-        git submodule foreach git pull origin master
     ;;
 
     "uninstall"|"remove")
