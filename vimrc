@@ -14,12 +14,12 @@ Plug 'scrooloose/nerdtree'
 "Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
 
 "Plug 'dense-analysis/ale'
 Plug 'vim-syntastic/syntastic'
-
-Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
 
 Plug 'davidhalter/jedi-vim' ", { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent'
