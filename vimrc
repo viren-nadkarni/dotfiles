@@ -14,8 +14,8 @@ Plug 'scrooloose/nerdtree'
 "Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 
 "Plug 'dense-analysis/ale'
@@ -182,9 +182,7 @@ let g:ctrlp_map = ';'
 let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_working_path_mode = 'c'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:syntastic_loc_list_height = 5
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
