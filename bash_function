@@ -1,17 +1,17 @@
 get_git_info() {
     # based on: http://stackoverflow.com/a/13003854/170413
-    local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-    if [[ "$branch" != "" ]]; then
-        if [[ "$branch" == "HEAD" ]]; then
-            branch="<detached>"
+    local BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ "$BRANCH" != "" ]]; then
+        if [[ "$BRANCH" == "HEAD" ]]; then
+            BRANCH="<detached>"
         fi
-        git_branch="$branch"
+        git_branch="$BRANCH"
     else
         git_branch=""
     fi
 
-    local status=$(git status --porcelain 2> /dev/null)
-    if [[ "$status" != "" ]]; then
+    local STATUS=$(git status --porcelain 2> /dev/null)
+    if [[ "$STATUS" != "" ]]; then
         git_dirty="*"
     else
         git_dirty=""
@@ -29,15 +29,15 @@ get_virtualenv_info(){
 }
 
 randstr() {
-    LEN=$1
+    local LEN=$1
     [[ -z "$LEN" ]] && LEN=32
-    SET='abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789'
+    local SET='abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789'
     cat /dev/urandom | tr -dc $SET | fold -w $LEN | head -n 1
 }
 
 scan() {
     scanimage --resolution 300 --mode Color --device pixma > out.pnm
-    OUTJPEG=out-$(date +%s).jpeg
+    local OUTJPEG=out-$(date +%s).jpeg
     pnmtojpeg out.pnm > $OUTJPEG
     rm out.pnm
     echo "Saved to $OUTJPEG"
