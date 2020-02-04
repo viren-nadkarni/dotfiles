@@ -36,6 +36,7 @@
 
 [core]
     editor = vim
+    excludesFile = ~/.gitignore_global
 
 [fetch]
     prune = true

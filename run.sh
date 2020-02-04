@@ -3,7 +3,7 @@ set -xeuo pipefail
 #IFS=$'\n\t'
 
 dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-files="bash_alias bash_function bashrc curlrc gdbinit gitconfig tmux.conf vim vimrc wgetrc"
+files="bash_alias bash_function bashrc curlrc gdbinit gitconfig gitignore_global tmux.conf vim vimrc wgetrc"
 
 function print_help {
     cat <<EOF
