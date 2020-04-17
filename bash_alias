@@ -70,8 +70,3 @@ alias rmvenv='rmvirtualenv'
 alias djsh='python3 manage.py shell_plus'
 alias djmig='python3 manage.py migrate'
 alias djmkmig='python3 manage.py makemigrations'
-
-# Temporary
-alias ls="echo use Exa: 'l'"
-alias grep="echo use Ripgrep: 'rg'"
-alias find="echo use Fd: 'fd'"
