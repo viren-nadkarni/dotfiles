@@ -23,9 +23,11 @@ rsync --human-readable --archive --verbose --progress --dry-run /data/photos/ /m
 ffmpeg -i input -pix_fmt rgb8 output
 
 # gpg
-gpg --import key
+gpg --import public.key
+gpg --allow-secret-key-import --import private.key
 gpg --fingerprint
 gpg --list-keys
+gpg --list-secret-keys
 gpg --encrypt --armor --recipient name
 gpg --decrypt file
 gpg --clearsign file
@@ -33,8 +35,11 @@ gpg --edit-key ABCDEF
   > expiry
   > key 1
   > save
+  > passwd
+  > save
 gpg --send-keys --keyserver hkps://hkps.pool.sks-keyservers.net 9CCF7D6898E84F1926CDC01DDD2870265E495EAB
-gpg --export-secret-keys > keyfile && gpg2 --import keyfile
+gpg --export -a name > public.asc
+gpg --export-secret-keys -a name > private.asc && gpg2 --import private.asc
 
 # sort processes by cpu usage
 ps aux | sort -n -r -k 3
