@@ -20,13 +20,6 @@ alias lx='ll -BX'                   # sort by ext
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
 
-# override `ls` with `exa`
-alias exa='exa --classify --long --git'
-alias l='exa'
-alias la='exa --all'
-
-alias cat=bat
-
 alias ln='ln -i'
 
 alias grep='grep --colour=auto'
@@ -70,3 +63,9 @@ alias rmvenv='rmvirtualenv'
 alias djsh='python3 manage.py shell_plus'
 alias djmig='python3 manage.py migrate'
 alias djmkmig='python3 manage.py makemigrations'
+
+# override `ls` with `exa`
+alias exa='exa --classify --long --git'
+alias l='exa'
+alias la='exa --all'
+alias cat=bat

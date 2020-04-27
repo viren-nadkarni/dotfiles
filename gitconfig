@@ -3,6 +3,7 @@
     aa = add --all
     bl = blame
     br = branch
+    bra = branch --all
     ci = commit --verbose
     cia = commit --verbose --amend
     cl = clone --recursive
