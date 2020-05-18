@@ -19,6 +19,7 @@ alias la='ll -A'
 alias lx='ll -BX'                   # sort by ext
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
+alias l='ls'
 
 alias ln='ln -i'
 
