@@ -22,9 +22,10 @@ Plug 'mattn/emmet-vim'
 Plug 'vim-syntastic/syntastic'
 
 Plug 'davidhalter/jedi-vim' ", { 'for': 'python' }
-Plug 'Vimjas/vim-python-pep8-indent'
+"Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'pangloss/vim-javascript'
 Plug 'hashivim/vim-terraform'
+Plug 'pearofducks/ansible-vim'
 
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline-themes'
