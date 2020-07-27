@@ -68,4 +68,4 @@ find ./path -type f -exec chmod 664 '{}' \;
 git reset HEAD~n        # undo last n commits
 git branch -m new-name  # rename branch
 git submodule foreach --recursive git checkout .  # fix dirty submodules
-git submodule update --init --recursive  # update submodules
+git submodule update --recursive --remote  # update submodules
