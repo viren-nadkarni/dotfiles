@@ -21,9 +21,9 @@ Plug 'mattn/emmet-vim'
 "Plug 'dense-analysis/ale'
 Plug 'vim-syntastic/syntastic'
 
-Plug 'davidhalter/jedi-vim' ", { 'for': 'python' }
+Plug 'davidhalter/jedi-vim'
 Plug 'fatih/vim-go'
-"Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'pangloss/vim-javascript'
 Plug 'hashivim/vim-terraform'
 Plug 'pearofducks/ansible-vim'
@@ -199,8 +199,7 @@ let g:syntastic_python_checkers = ['flake8']
 autocmd WinEnter * call ExitIfNERDTreeIsLastWindow()
 
 " language specific overrides
-autocmd BufRead,BufNewFile *.html setlocal expandtab tabstop=2 shiftwidth=2
-autocmd BufRead,BufNewFile *.py,*.pyw setlocal expandtab tabstop=4 shiftwidth=4
+autocmd BufRead,BufNewFile *.html setlocal tabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.go setlocal noexpandtab
 autocmd BufRead,BufNewFile Makefile* setlocal noexpandtab
 
