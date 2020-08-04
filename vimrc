@@ -22,6 +22,7 @@ Plug 'mattn/emmet-vim'
 Plug 'vim-syntastic/syntastic'
 
 Plug 'davidhalter/jedi-vim' ", { 'for': 'python' }
+Plug 'fatih/vim-go'
 "Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'pangloss/vim-javascript'
 Plug 'hashivim/vim-terraform'
@@ -173,7 +174,7 @@ nmap <C-\> :TagbarToggle<CR>
 :command Q q
 
 "map <leader>d :ALEGoToDefinition
-"ap <leader>r :ALEFindReferences
+"map <leader>r :ALEFindReferences
 "let g:ale_lint_on_text_changed = 'never'
 "let g:ale_completion_enabled = 1
 
@@ -196,7 +197,12 @@ let g:syntastic_python_checkers = ['flake8']
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
 "autocmd vimenter * NERDTree
 autocmd WinEnter * call ExitIfNERDTreeIsLastWindow()
-autocmd BufRead *.html setlocal tabstop=2 shiftwidth=2
+
+" language specific overrides
+autocmd BufRead,BufNewFile *.html setlocal expandtab tabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.py,*.pyw setlocal expandtab tabstop=4 shiftwidth=4
+autocmd BufRead,BufNewFile *.go setlocal noexpandtab
+autocmd BufRead,BufNewFile Makefile* setlocal noexpandtab
 
 function ExitIfNERDTreeIsLastWindow()
   if exists("t:NERDTreeBufName")
