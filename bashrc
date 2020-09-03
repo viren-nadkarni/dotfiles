@@ -23,7 +23,7 @@ shopt -s histappend
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # append history to make it searchable across parallel sessions
-export PROMPT_COMMAND="history -a; get_git_info; get_virtualenv_info; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export EDITOR="vim"
 export TERM="xterm-256color"
 

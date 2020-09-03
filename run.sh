@@ -1,84 +1,103 @@
 #!/bin/bash
-set -xeuo pipefail
-#IFS=$'\n\t'
+set -euo pipefail
+CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-dotfiles_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-files="bash_alias bash_function bashrc curlrc gdbinit gitconfig gitignore_global tmux.conf vim vimrc wgetrc"
+## run.sh -- Install dotfiles
+## Usage:
+##      ./run.sh <option>
+## Options:
+##      -h      Show this message
+
+dotfiles="config bash_alias bash_function bashrc curlrc gdbinit gitconfig gitignore_global tmux.conf vim vimrc wgetrc"
 
 function print_help {
-    cat <<EOF
-Usage: $0 <operation>
-Operations:
-   install
-   uninstall
-EOF
+    sed -rn 's/^## ?//;T;p' "$0"
 }
 
-operation=${1:-}
-if [[ -z "$operation" ]]; then
+function backup_dotfiles {
+    backup_dir=~/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)
+    mkdir $backup_dir
+
+    for file in $dotfiles; do
+        file_src=~/.${file}
+        if [ -a $file_src ]; then
+            file_dest=$backup_dir/.${file}
+            mv $file_src $file_dest
+            echo "Backed up $file_src to $file_dest"
+        fi
+    done
+}
+
+function install_dotfiles {
+    for file in $dotfiles; do
+        file_src=$CWD/$file
+        file_dest=~/.$file
+        cp -r $file_src $file_dest
+        echo "Copied $file_src to $file_dest"
+    done
+}
+
+function bye {
+    echo
+    echo "Complete plugin install in Vim with"
+    echo "  :PlugInstall"
+    echo
+}
+
+function post_steps {
+    if $(uname) == "Darwin"; then
+        brew update
+        brew install bat exa fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
+            git git-extras coreutils parallel wdiff
+
+    elif $(uname) == "Linux"; then
+        # Assume Ubuntu
+        sudo apt update
+        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline
+
+        echo
+        echo "Install manually"
+        echo "exa       https://github.com/ogham/exa"
+        echo "starship  https://starship.rs/guide"
+        echo
+
+    else
+        echo "WTF, shit OS"
+    fi
+}
+
+function prompt_choice {
+    echo
+    echo "Select the shell prompt:"
+    echo "[1] The old shell prompt"
+    echo "[2] Starship"
+
+    read -p "> " -n 1
+    echo
+
+    case $REPLY in
+        1 )
+            cat ${CWD}/_prompt_old >> ~/.bashrc
+            ;;
+        2 )
+            cat ${CWD}/_prompt_starship >> ~/.bashrc
+            ;;
+        * )
+            echo "WTF, wrong choice"
+            exit 1
+    esac
+}
+
+
+if [[ $# == 1 ]] || [[ ${1:-} == "-h" ]]; then
     print_help
     exit 1
 fi
 
-case $operation in
-    "install")
-        cd $dotfiles_path
+backup_dotfiles
 
-        git submodule update --init --recursive
+install_dotfiles
 
-        for file in $files; do
-            if [ -a ~/.${file} ]; then
-                if [ -a ~/.${file}.old ]; then
-                    echo "Skipping '.${file}' as '.${file}.old' exists"
-                else
-                    echo "Backed up '.${file}' to '.${file}.old'"
-                    mv ~/.${file} ~/.${file}.old
-                fi
-            fi
+prompt_choice
 
-            if [ ${file} == "bashrc" ]; then
-                if grep "viren-nadkarni" ~/.bashrc 1> /dev/null; then
-                    echo "Skipping '.bashrc' append"
-                    continue
-                else
-                    cat ${dotfiles_path}/bashrc ${dotfiles_path}/_bash_prompt >> ~/.bashrc
-                    continue
-                fi
-            fi
-            cp -r ${dotfiles_path}/${file} ~/.${file}
-        done
-
-        echo
-        echo "Complete plugin install in Vim with"
-        echo "  :PlugInstall"
-        echo
-        echo "Install manually"
-        echo "bat       https://github.com/sharkdp/bat"
-        echo "          https://github.com/eth-p/bat-extras"
-        echo "exa       https://github.com/ogham/exa"
-        echo "ripgrep   https://github.com/BurntSushi/ripgrep"
-        echo "fzf       https://github.com/junegunn/fzf"
-        echo "fd        https://github.com/sharkdp/fd"
-        echo
-        echo "sudo apt install -y colordiff wdiff fonts-powerline"
-        echo
-
-    ;;
-
-    "uninstall"|"remove")
-        for file in $files; do
-            rm -r ~/.${file}
-
-            if [ -a ~/.${file}.old ]; then
-                mv ~/.${file}.old ~/.${file}
-                echo "Restored '.${file}'"
-            fi
-        done
-    ;;
-
-    *)
-        print_help
-        exit 1
-    ;;
-esac
-
+bye

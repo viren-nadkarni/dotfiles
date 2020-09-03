@@ -1,0 +1,50 @@
+add_newline = true
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "time",
+    "python",
+    "git_branch",
+    "git_status",
+    "git_state",
+    "git_commit",
+    "line_break",
+    "character",
+]
+
+[character]
+style_success = "white"
+style_failure = "red"
+symbol = "$"
+
+[username]
+style_user = "bold yellow"
+style_root = "bold red"
+show_always = true
+
+[time]
+prefix = ""
+style = "dimmed white"
+format = "%r"
+use_12hr = true
+disabled = false
+
+[directory]
+style = "bold red"
+
+[python]
+style = "purple"
+symbol = ""
+
+[git_branch]
+style = "white"
+
+[git_status]
+style = "white"
+
+[git_state]
+style = "white"
+
+[git_commit]
+style = "white"
