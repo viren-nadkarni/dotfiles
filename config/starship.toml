@@ -10,6 +10,7 @@ prompt_order = [
     "git_state",
     "git_commit",
     "line_break",
+    "jobs",
     "character",
 ]
 
@@ -32,10 +33,13 @@ disabled = false
 
 [directory]
 style = "bold red"
+truncation_length = 7
+truncate_to_repo = false
 
 [python]
 style = "purple"
 symbol = ""
+python_binary = "python3"
 
 [git_branch]
 style = "white"
@@ -48,3 +52,7 @@ style = "white"
 
 [git_commit]
 style = "white"
+
+[jobs]
+style = "blue"
+symbol = "+"

@@ -199,7 +199,7 @@ let g:syntastic_python_checkers = ['flake8']
 autocmd WinEnter * call ExitIfNERDTreeIsLastWindow()
 
 " language specific overrides
-autocmd BufRead,BufNewFile *.html setlocal tabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.html,*.json setlocal tabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.go setlocal noexpandtab
 autocmd BufRead,BufNewFile Makefile* setlocal noexpandtab
 

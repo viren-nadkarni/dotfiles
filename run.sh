@@ -100,4 +100,6 @@ install_dotfiles
 
 prompt_choice
 
+post_steps
+
 bye
