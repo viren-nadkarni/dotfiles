@@ -1,58 +1,77 @@
 add_newline = true
-prompt_order = [
-    "username",
-    "hostname",
-    "directory",
-    "time",
-    "python",
-    "git_branch",
-    "git_status",
-    "git_state",
-    "git_commit",
-    "line_break",
-    "jobs",
-    "character",
-]
+
+format = """\
+    $username\
+    $hostname\
+    $directory\
+    $time\
+    $python\
+    $git_branch\
+    $git_status\
+    $git_state\
+    $git_commit\
+    $line_break\
+    $jobs\
+    $character\
+"""
 
 [character]
-style_success = "white"
-style_failure = "red"
-symbol = "$"
+disabled = false
+format = "$symbol "
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
 
 [username]
+disabled = false
+format = "[$user]($style) "
 style_user = "bold yellow"
 style_root = "bold red"
 show_always = true
 
 [time]
+disabled = false
 prefix = ""
 style = "dimmed white"
-format = "%r"
+format = "[$time]($style) "
 use_12hr = true
-disabled = false
 
 [directory]
+disabled = false
 style = "bold red"
 truncation_length = 7
 truncate_to_repo = false
+format = "[$path]($style) "
 
 [python]
+disabled = false
 style = "purple"
 symbol = ""
 python_binary = "python3"
+format = "[${symbol}${pyenv_prefix}${version}( \\($virtualenv\\))]($style) "
 
 [git_branch]
+disabled = false
 style = "white"
+format = "[$symbol$branch]($style) "
 
 [git_status]
+disabled = false
 style = "white"
+ahead = ""
+behind = ""
+diverged = ""
+renamed = ""
+deleted = ""
 
 [git_state]
+disabled = false
 style = "white"
 
 [git_commit]
+disabled = false
 style = "white"
 
 [jobs]
+disabled = false
 style = "blue"
 symbol = "+"
