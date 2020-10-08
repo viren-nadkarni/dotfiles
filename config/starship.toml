@@ -10,16 +10,18 @@ format = """\
     $git_status\
     $git_state\
     $git_commit\
-    $line_break\
     $jobs\
+    $cmd_duration\
+    $status\
+    $line_break\
     $character\
 """
 
 [character]
 disabled = false
 format = "$symbol "
-success_symbol = "[>](bold green)"
-error_symbol = "[>](bold red)"
+success_symbol = "[\\$](white)"
+error_symbol = "[\\$](white)"
 
 [username]
 disabled = false
@@ -30,7 +32,7 @@ show_always = true
 
 [time]
 disabled = false
-style = "dimmed white"
+style = "dimmed bold white"
 format = "[$time]($style) "
 use_12hr = true
 
@@ -44,23 +46,24 @@ format = "[$path]($style) "
 [python]
 disabled = false
 style = "purple"
-symbol = ""
 python_binary = "python3"
-format = "[${symbol}${pyenv_prefix}${version}( \\($virtualenv\\))]($style) "
+format = "[($virtualenv )]($style)"
 
 [git_branch]
 disabled = false
 style = "white"
-format = "[$symbol$branch]($style) "
+format = "[$symbol$branch ]($style)"
 
 [git_status]
 disabled = false
 style = "white"
-ahead = ""
-behind = ""
-diverged = ""
+format = "[$all_status$ahead_behind ]($style)"
+ahead = "↑"
+behind = "↓"
+deleted = "⨉"
+diverged = "⇅"
+modified = "·"
 renamed = ""
-deleted = ""
 
 [git_state]
 disabled = false
@@ -73,4 +76,15 @@ style = "white"
 [jobs]
 disabled = false
 style = "blue"
+threshold = 0
 symbol = "+"
+
+[cmd_duration]
+disabled = false
+style = "dimmed green"
+format = "[$duration ]($style)"
+
+[status]
+disabled = false
+style = "dimmed red"
+format = "[$status ]($style)"
