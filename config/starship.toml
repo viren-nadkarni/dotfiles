@@ -30,7 +30,6 @@ show_always = true
 
 [time]
 disabled = false
-prefix = ""
 style = "dimmed white"
 format = "[$time]($style) "
 use_12hr = true
