@@ -51,6 +51,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ,,='cd -'
 
+alias g='git'
 alias py='python3'
 alias py3='py'
 alias ipy='ipython3'

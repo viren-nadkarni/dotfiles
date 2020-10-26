@@ -34,7 +34,7 @@ show_always = true
 disabled = false
 style = "dimmed bold white"
 format = "[$time]($style) "
-use_12hr = true
+use_12hr = false
 
 [directory]
 disabled = false
@@ -52,16 +52,16 @@ format = "[($virtualenv )]($style)"
 [git_branch]
 disabled = false
 style = "white"
-format = "[$symbol$branch ]($style)"
+format = "[($symbol$branch )]($style)"
 
 [git_status]
 disabled = false
 style = "white"
-format = "[$all_status$ahead_behind ]($style)"
+format = "[($all_status$ahead_behind )]($style)"
 ahead = "↑"
 behind = "↓"
-deleted = "⨉"
-diverged = "⇅"
+deleted = "x"
+diverged = "/"
 modified = "·"
 renamed = ""
 
@@ -82,9 +82,9 @@ symbol = "+"
 [cmd_duration]
 disabled = false
 style = "dimmed green"
-format = "[$duration ]($style)"
+format = "[($duration )]($style)"
 
 [status]
 disabled = false
 style = "dimmed red"
-format = "[$status ]($style)"
+format = "[($status )]($style)"

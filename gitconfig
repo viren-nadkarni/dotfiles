@@ -22,6 +22,7 @@
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rt = reset
     rm = rm
+    rs = restore --staged
     s = show
     sh = stash
     shd = stash drop
@@ -38,6 +39,17 @@
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
+    pager = delta
+
+[delta]
+    line-numbers = true
+    syntax-theme = 1337
+
+[diff]
+    colorMoved = default
+
+[interactive]
+    diffFilter = delta --color-only
 
 [fetch]
     prune = true

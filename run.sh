@@ -48,7 +48,7 @@ function post_steps {
     if $(uname) == "Darwin"; then
         brew update
         brew install bat exa fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
-            git git-extras coreutils parallel wdiff
+            git git-extras coreutils parallel wdiff git-delta
 
     elif $(uname) == "Linux"; then
         # Assume Ubuntu
@@ -59,6 +59,7 @@ function post_steps {
         echo "Install manually"
         echo "exa       https://github.com/ogham/exa"
         echo "starship  https://starship.rs/guide"
+        echo "git-delta https://github.com/dandavison/delta"
         echo
 
     else
