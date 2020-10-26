@@ -64,6 +64,7 @@ deleted = "x"
 diverged = "/"
 modified = "·"
 renamed = ""
+stashed = "§"
 
 [git_state]
 disabled = false

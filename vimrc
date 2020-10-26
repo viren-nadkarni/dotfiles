@@ -21,8 +21,8 @@ Plug 'mattn/emmet-vim'
 "Plug 'dense-analysis/ale'
 Plug 'vim-syntastic/syntastic'
 
-Plug 'davidhalter/jedi-vim'
-Plug 'fatih/vim-go'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'pangloss/vim-javascript'
 Plug 'hashivim/vim-terraform'
@@ -191,6 +191,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
+
+" vim-go mappings
+autocmd FileType go nmap <leader>d <Plug>(go-def)
 
 "let g:tagbar_width = 30
 
