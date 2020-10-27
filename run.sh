@@ -45,12 +45,12 @@ function bye {
 }
 
 function post_steps {
-    if $(uname) == "Darwin"; then
+    if [ $(uname) == "Darwin" ]; then
         brew update
         brew install bat exa fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
             git git-extras coreutils parallel wdiff git-delta
 
-    elif $(uname) == "Linux"; then
+    elif [ $(uname) == "Linux" ]; then
         # Assume Ubuntu
         sudo apt update
         sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline
@@ -63,7 +63,7 @@ function post_steps {
         echo
 
     else
-        echo "WTF, shit OS"
+        echo "WTF, unknown OS"
     fi
 }
 
