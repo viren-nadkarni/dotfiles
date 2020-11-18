@@ -67,6 +67,7 @@ find ./path -type f -exec chmod 664 '{}' \;
 # git
 git reset HEAD~n        # undo last n commits
 git branch -m new-name  # rename branch
+git submodule add url dest
 git submodule foreach --recursive git checkout .  # fix dirty submodules
 git submodule update --recursive --remote  # update submodules
 git commit --amend --no-edit --author "Viren Nadkarni <viren.nadkarni@gmail.com>"
