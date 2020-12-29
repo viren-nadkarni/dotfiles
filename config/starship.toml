@@ -36,6 +36,12 @@ style = "dimmed bold white"
 format = "[$time]($style) "
 use_12hr = false
 
+[hostname]
+disabled = false
+ssh_only = true
+style = "bold green"
+format = "[$hostname]($style) "
+
 [directory]
 disabled = false
 style = "bold red"
