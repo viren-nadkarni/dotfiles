@@ -17,6 +17,7 @@
     lg = log --oneline --graph --abbrev-commit --max-count 25 --decorate
     mg = merge
     ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    phf = "!git push --force-with-lease -u origin $(git rev-parse --abbrev-ref HEAD)"
     pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
     pt = push --tags origin
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
@@ -66,6 +67,9 @@
 
 [merge]
     tool = vimdiff
+
+[pull]
+    ff = only
 
 [rebase]
     autoStash = true
