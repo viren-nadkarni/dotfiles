@@ -11,27 +11,33 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 
-"Plug 'dense-analysis/ale'
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
+"Plug 'vim-syntastic/syntastic'
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'hashivim/vim-terraform'
 Plug 'pearofducks/ansible-vim'
+Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
+
+" LSP
+" rust:
+"   rustup component add rls rust-analysis rust-src
 
 " moving around, searching and patterns
 set whichwrap+=<,>,[,]
@@ -173,10 +179,16 @@ nmap <C-\> :TagbarToggle<CR>
 :command W w
 :command Q q
 
-"map <leader>d :ALEGoToDefinition
-"map <leader>r :ALEFindReferences
-"let g:ale_lint_on_text_changed = 'never'
-"let g:ale_completion_enabled = 1
+map <leader>d :ALEGoToDefinition<CR>
+map <leader>r :ALEFindReferences<CR>
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+
+" use <Ctrl-Space> for omnifunc; on some terminals, <C-Space> is <Nul>
+imap <buffer> <Nul> <C-Space>
+smap <buffer> <Nul> <C-Space>
+inoremap <silent> <buffer> <C-Space> <c-x><c-o>
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
@@ -185,12 +197,12 @@ let g:ctrlp_map = ';'
 let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_working_path_mode = 'c'
 
-let g:syntastic_loc_list_height = 5
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_loc_list_height = 5
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['flake8']
 
 " vim-go mappings
 autocmd FileType go nmap <leader>d <Plug>(go-def)
