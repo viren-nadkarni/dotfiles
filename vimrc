@@ -114,6 +114,7 @@ set autoread                                "automatically read a file when it w
 
 " the swap file
 set swapfile
+set updatetime=2000                         "time in msec after which the swap file will be updated
 
 " command line editing
 set history=1000                            "how many command lines are remembered
