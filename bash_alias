@@ -71,3 +71,4 @@ alias exa='exa --classify --long --git'
 alias l='exa'
 alias la='exa --all'
 alias cat=bat
+alias catp='bat --plain'

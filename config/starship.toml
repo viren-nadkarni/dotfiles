@@ -83,7 +83,7 @@ style = "white"
 [jobs]
 disabled = false
 style = "blue"
-threshold = 1
+threshold = 0
 symbol = "+"
 
 [cmd_duration]
