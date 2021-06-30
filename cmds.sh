@@ -32,8 +32,8 @@ gpg --encrypt --armor --recipient name
 gpg --decrypt file
 gpg --clearsign file
 gpg --edit-key ABCDEF
-  > expiry
   > key 1
+  > expire
   > save
   > passwd
   > save
