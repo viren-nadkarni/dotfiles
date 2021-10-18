@@ -70,5 +70,4 @@ alias djmkmig='python3 manage.py makemigrations'
 alias exa='exa --classify --long --git'
 alias l='exa'
 alias la='exa --all'
-alias cat=bat
-alias catp='bat --plain'
+alias cat='bat --plain'
