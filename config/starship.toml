@@ -20,8 +20,8 @@ format = """\
 [character]
 disabled = false
 format = "$symbol "
-success_symbol = "[\\$](white)"
-error_symbol = "[\\$](white)"
+success_symbol = "[\\$]()"
+error_symbol = "[\\$]()"
 
 [username]
 disabled = false
@@ -83,7 +83,6 @@ style = "white"
 [jobs]
 disabled = false
 style = "blue"
-threshold = 0
 symbol = "+"
 
 [cmd_duration]

@@ -1,0 +1,21 @@
+Plug 'tpope/vim-surround'
+
+let mapleader=','
+
+map <Leader>d :action GotoImplementation<CR>
+map <Leader>r :action GotoDeclaration<CR>
+map <Leader>s :action GotoTypeDeclaration<CR>
+
+set incsearch
+set ignorecase
+set smartcase
+
+set scrolloff=4
+set number
+
+set hlsearch
+set showcmd
+set noshowmode
+set novisualbell
+
+set undolevels=1000
