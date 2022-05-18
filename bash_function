@@ -28,11 +28,24 @@ get_virtualenv_info(){
     fi
 }
 
-randstr() {
-    local LEN=$1
+_randstr() {
+    # Args:
+    #   set of characters
+    #   length of output (default 32)
+
+    local SET=$1
+    local LEN=$2
     [[ -z "$LEN" ]] && LEN=32
-    local SET='abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789'
+
     cat /dev/urandom | tr -dc $SET | fold -w $LEN | head -n 1
+}
+
+randstr() {
+    _randstr 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789' $1
+}
+
+randhex() {
+    _randstr '0123456789abcdef' $1
 }
 
 scan() {
