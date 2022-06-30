@@ -19,6 +19,7 @@
     ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     phf = "!git ph --force-with-lease"
     pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+    plr = "!git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)"
     pt = push --tags origin
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rt = reset
