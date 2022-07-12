@@ -52,6 +52,7 @@ alias ....='cd ../../..'
 alias ,,='cd -'
 
 alias g='git'
+alias d='docker'
 alias py='python3'
 alias py3='py'
 alias ipy='ipython3'
