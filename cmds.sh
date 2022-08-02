@@ -75,3 +75,11 @@ git commit --amend --no-edit --author "Viren Nadkarni <viren.nadkarni@gmail.com>
 git submodule deinit -f -- dir/submod
 rm -rf .git/modules/dir/submod
 git rm -f dir/submod
+
+# qr
+qrencode -t SVG "upi://pay?cu=INR&pa=UPIHANDLE&pn=PAYEE%20NAME&am=200" -o output.svg
+zbarimg input.png
+
+# metadata
+exiftool photo.jpg  # view
+exiftool -all= -overwrite_original photo.jpg  # remove

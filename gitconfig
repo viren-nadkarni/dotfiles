@@ -13,6 +13,7 @@
     d = diff
     dc = diff --cached
     dh = diff HEAD
+    f = fetch
     g = grep
     lg = log --oneline --graph --abbrev-commit --max-count 25 --decorate
     mg = merge
