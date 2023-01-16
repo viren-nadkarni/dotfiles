@@ -28,7 +28,7 @@
     rm = rm
     rs = restore --staged
     s = show
-    sh = stash
+    sh = stash push
     shd = stash drop
     shl = stash list
     shp = stash pop
