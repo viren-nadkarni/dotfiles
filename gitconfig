@@ -7,8 +7,6 @@
     ci = commit --verbose
     cia = commit --verbose --amend
     cl = clone --recursive
-    co = checkout
-    cof = checkout --
     cp = cherry-pick
     d = diff
     dc = diff --cached
@@ -25,15 +23,17 @@
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rb = rebase
     rt = reset
-    rm = rm
-    rs = restore --staged
-    s = show
+    re = restore
+    res = restore --staged
     sh = stash push
     shd = stash drop
     shl = stash list
     shp = stash pop
     shs = stash show --patch
     st = status --short --branch
+    sw = switch
+    swc = switch --create
+    s = show
     t = tag
     td = tag -d
 
