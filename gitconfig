@@ -22,6 +22,7 @@
     pt = push --tags origin
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rb = rebase
+    rmt = remote
     rt = reset
     re = restore
     res = restore --staged
