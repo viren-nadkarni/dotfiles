@@ -53,11 +53,10 @@ function post_steps {
     elif [ $(uname) == "Linux" ]; then
         # Assume Ubuntu
         sudo apt update
-        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp
+        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp exa
 
         echo
         echo "Install manually"
-        echo "exa       https://github.com/ogham/exa"
         echo "starship  https://starship.rs/guide"
         echo "git-delta https://github.com/dandavison/delta"
         echo
