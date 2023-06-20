@@ -9,27 +9,29 @@ let mapleader=','
 " plugins
 call plug#begin('~/.vim/plugged')
 
+" essentials
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
-Plug 'mattn/emmet-vim'
 
+" syntax highlighting
 Plug 'dense-analysis/ale'
 "Plug 'vim-syntastic/syntastic'
 
+" language-specific
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'hashivim/vim-terraform'
 Plug 'pearofducks/ansible-vim'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
+" visual
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline-themes'
 
