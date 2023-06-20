@@ -53,11 +53,11 @@ function post_steps {
     elif [ $(uname) == "Linux" ]; then
         # Assume Ubuntu
         sudo apt update
-        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp exa
+        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp exa cargo
+        cargo install starship --locked
 
         echo
         echo "Install manually"
-        echo "starship  https://starship.rs/guide"
         echo "git-delta https://github.com/dandavison/delta"
         echo
 
