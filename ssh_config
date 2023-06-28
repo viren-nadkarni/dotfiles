@@ -1,5 +1,0 @@
-host localhost
-    HostName 127.0.0.1
-    User root
-    IdentityFile ~/.ssh/id_rsa
-    ForwardX11 yes

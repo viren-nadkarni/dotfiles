@@ -8,7 +8,7 @@ CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ## Options:
 ##      -h      Show this message
 
-dotfiles="config bash_alias bash_function bashrc curlrc gdbinit gitconfig gitignore_global tmux.conf vim vimrc wgetrc"
+dotfiles="config bash_alias bash_function bashrc curlrc gdbinit gitconfig gitignore_global ideavimrc tmux.conf vim vimrc wgetrc"
 
 function print_help {
     sed -rn 's/^## ?//;T;p' "$0"
