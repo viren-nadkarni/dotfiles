@@ -34,6 +34,7 @@ alias tmux='tmux -2u'
 alias df='df -h'
 alias du='du -c -h'
 alias ping='ping -c 4'
+alias reset='tput reset'
 alias wget='wget -c'
 alias wdiff='wdiff -w "$(tput bold;tput setaf 1)" -x "$(tput sgr0)" -y "$(tput bold;tput setaf 2)" -z "$(tput sgr0)"'
 
