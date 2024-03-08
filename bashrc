@@ -48,3 +48,5 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune zippy; echo)
 
+# fzf keybindings
+source /usr/share/doc/fzf/examples/key-bindings.bash
