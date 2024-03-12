@@ -8,6 +8,9 @@ qpdf -decrypt -password=coldplay input.pdf output.pdf
 # merge pdfs
 pdftk part1.pdf part2.pdf cat output merged.pdf
 
+# remove passwords from pdf
+pdftk INPUT.pdf input_pw PASSWORD output OUTPUT.pdf
+
 # extract jpegs from pdf
 pdfimages -j file.pdf ./
 
