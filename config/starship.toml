@@ -66,11 +66,16 @@ style = "white"
 format = "[($all_status$ahead_behind )]($style)"
 ahead = "↑"
 behind = "↓"
-deleted = "x"
-diverged = "Y"
-modified = "·"
+conflicted = ""
+deleted = "×"
+diverged = "↕"
+modified = "○"
 renamed = ""
-stashed = "§"
+stashed = "≡"
+staged = "●"
+typechanged = ""
+untracked = "⋅"
+up_to_date = ""
 
 [git_state]
 disabled = false
@@ -83,7 +88,7 @@ style = "white"
 [jobs]
 disabled = false
 style = "blue"
-symbol = "+"
+symbol = "∷"
 
 [cmd_duration]
 disabled = false
