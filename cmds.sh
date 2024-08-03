@@ -89,4 +89,4 @@ exiftool -all= -overwrite_original photo.jpg  # remove
 
 # pass
 pass init <user>
-git clone <remote> ~/.password-safe
+git clone <remote> ~/.password-store
