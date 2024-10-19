@@ -47,13 +47,13 @@ function bye {
 function post_steps {
     if [ $(uname) == "Darwin" ]; then
         brew update
-        brew install bat exa fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
+        brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
             git git-extras coreutils parallel wdiff git-delta
 
     elif [ $(uname) == "Linux" ]; then
         # Assume Ubuntu
         sudo apt update
-        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp exa cargo build-essential cmake
+        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp cargo build-essential cmake
         cargo install starship --locked
 
         echo

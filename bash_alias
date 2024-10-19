@@ -68,9 +68,7 @@ alias djsh='python3 manage.py shell_plus'
 alias djmig='python3 manage.py migrate'
 alias djmkmig='python3 manage.py makemigrations'
 
-# override `ls` with `exa`
-alias exa='exa --classify --long --git'
-alias l='exa'
-alias la='exa --all'
+alias l='ls'
+alias la='ls --all'
 alias cat='batcat --plain'
 alias fd='fdfind'
