@@ -88,5 +88,5 @@ exiftool photo.jpg  # view
 exiftool -all= -overwrite_original photo.jpg  # remove
 
 # pass
-pass init <user>
 git clone <remote> ~/.password-store
+pass init $USER
