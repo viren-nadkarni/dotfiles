@@ -53,7 +53,9 @@ function post_steps {
     elif [ $(uname) == "Linux" ]; then
         # Assume Ubuntu
         sudo apt update
-        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff fonts-powerline pass pass-extension-otp cargo build-essential cmake
+        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \  # CLI tools
+            cargo build-essential cmake \  # build tools
+            fonts-urw-base35 fonts-powerline  # fonts
         cargo install starship --locked
 
         echo
