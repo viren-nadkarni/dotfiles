@@ -54,8 +54,10 @@ function post_steps {
         # Assume Ubuntu
         sudo apt update
         sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \  # CLI tools
-            cargo build-essential cmake \  # build tools
-            fonts-urw-base35 fonts-powerline  # fonts
+            cargo build-essential autoconf automake make cmake apt-file \  # build tools
+            net-tools fdisk \  # sys tools
+            tmux tmuxinator pandoc texlive-latex-recommended \  # stuff
+            fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer  # fonts
         cargo install starship --locked
 
         echo
