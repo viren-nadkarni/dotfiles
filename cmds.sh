@@ -1,5 +1,5 @@
 # scan image
-scanimage --resolution 300 --mode Color --device pixma > out.pnm
+scanimage --resolution 300 --mode Color --device-name airscan --format jpeg > out.jpeg
 pnmtojpeg out.pnm > out.jpeg
 
 # decrypt pdf
