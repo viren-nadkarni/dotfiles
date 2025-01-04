@@ -80,7 +80,7 @@ rm -rf .git/modules/dir/submod
 git rm -f dir/submod
 
 # qr
-qrencode -t SVG "upi://pay?cu=INR&pa=UPIHANDLE&pn=PAYEE%20NAME&am=200" -o output.svg
+qrencode -t SVG "upi://pay?cu=INR&pa=UPIHANDLE&pn=PAYEE%20NAME&am=200&tn=MESSAGE" -o output.svg
 zbarimg input.png
 
 # metadata
