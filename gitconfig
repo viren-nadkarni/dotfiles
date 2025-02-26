@@ -4,8 +4,8 @@
     bl = blame
     br = branch
     bra = branch --all
-    ci = commit --verbose
-    cia = commit --verbose --amend
+    ci = commit
+    cia = commit --amend
     cl = clone --recursive
     cp = cherry-pick
     d = diff
@@ -15,10 +15,9 @@
     g = grep
     lg = log --oneline --graph --abbrev-commit --max-count 25 --decorate
     mg = merge
-    ph = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    ph = push
     phf = "!git ph --force-with-lease"
-    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-    plr = "!git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)"
+    pl = pull
     pt = push --tags origin
     ptd = "!sh -c 'git push origin :refs/tags/$1' -"
     rb = rebase
@@ -38,20 +37,40 @@
     t = tag
     td = tag -d
 
+[branch]
+    sort = -committerdate
+
+[column]
+    ui = auto
+
 [color]
     ui = true
+
+[commit]
+    verbose = true
 
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
-    pager = delta
 
 [delta]
     line-numbers = true
     syntax-theme = 1337
 
 [diff]
+    algorithm = histogram
     colorMoved = default
+    mnemonicPrefix = true
+    renames = true
+    tool = vimdiff
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[help]
+    autocorrect = prompt
 
 [init]
     defaultBranch = master
@@ -59,21 +78,26 @@
 [interactive]
     diffFilter = delta --color-only
 
-[fetch]
-    prune = true
-
-[user]
-    name = Viren Nadkarni
-    email = viren.nadkarni@gmail.com
-
-[diff]
-    tool = vimdiff
-
 [merge]
+    conflictstyle = zdiff3
     tool = vimdiff
 
 [pull]
     ff = only
+    autoSetupRemote = true
+
+[push]
+    autoSetupRemote = true
+    default = simple
 
 [rebase]
     autoStash = true
+    autoSquash = true
+    updateRefs = true
+
+[tag]
+    sort = version:refname
+
+[user]
+    name = Viren Nadkarni
+    email = viren.nadkarni@gmail.com
