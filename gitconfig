@@ -52,9 +52,11 @@
 [core]
     editor = vim
     excludesFile = ~/.gitignore_global
+    pager = delta
 
 [delta]
     line-numbers = true
+    navigate = true
     syntax-theme = 1337
 
 [diff]
