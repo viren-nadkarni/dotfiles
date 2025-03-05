@@ -48,7 +48,7 @@ function post_steps {
     if [ $(uname) == "Darwin" ]; then
         brew update
         brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
-            git git-extras coreutils parallel wdiff git-delta
+            git git-extras coreutils parallel wdiff git-delta git-lfs
 
     elif [ $(uname) == "Linux" ]; then
         # Assume Ubuntu
