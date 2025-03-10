@@ -71,9 +71,6 @@
     pruneTags = true
     all = true
 
-[help]
-    autocorrect = prompt
-
 [init]
     defaultBranch = master
 
@@ -81,7 +78,6 @@
     diffFilter = delta --color-only
 
 [merge]
-    conflictstyle = zdiff3
     tool = vimdiff
 
 [pull]
