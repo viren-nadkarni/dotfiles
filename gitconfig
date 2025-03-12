@@ -66,11 +66,6 @@
     renames = true
     tool = vimdiff
 
-[fetch]
-    prune = true
-    pruneTags = true
-    all = true
-
 [init]
     defaultBranch = master
 
