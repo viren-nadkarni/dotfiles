@@ -57,7 +57,8 @@ function post_steps {
             cargo build-essential autoconf automake make cmake apt-file \  # build tools
             net-tools fdisk \  # sys tools
             tmux tmuxinator pandoc texlive-latex-recommended \  # stuff
-            fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer  # fonts
+            fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \ # fonts
+            fonts-clear-sans fonts-montserrat
         cargo install starship --locked
 
         echo
