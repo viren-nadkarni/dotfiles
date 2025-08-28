@@ -6,40 +6,40 @@ set pastetoggle=<F12>
 
 let mapleader=','
 
+" Certain options below must be before plugins are loaded
+let g:ale_lint_on_text_changed = 'never'  " Disable linters when typing
+let g:ale_completion_enabled = 1  " Enable completion where available
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ctrlp_map = ';'
+let g:ctrlp_cmd = 'CtrlP'
+
+"let g:tagbar_width = 30
+
 " plugins
 call plug#begin('~/.vim/plugged')
 
 " essentials
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-surround'
 
-" syntax highlighting
+" syntax checking
 Plug 'dense-analysis/ale'
-"Plug 'vim-syntastic/syntastic'
 
-" language-specific
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'hashivim/vim-terraform'
-Plug 'pearofducks/ansible-vim'
-Plug 'cespare/vim-toml', { 'branch': 'main' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" syntax highlighting
+Plug 'sheerun/vim-polyglot'
 
 " visual
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
-
-" LSP
-" rust:
-"   rustup component add rls rust-analysis rust-src
 
 " moving around, searching and patterns
 set whichwrap+=<,>,[,]
@@ -184,8 +184,7 @@ nmap <C-\> :TagbarToggle<CR>
 
 map <leader>d :ALEGoToDefinition<CR>
 map <leader>r :ALEFindReferences<CR>
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_completion_enabled = 1
+map <leader>f :ALEHover<CR>
 set omnifunc=ale#completion#OmniFunc
 
 " use <Ctrl-Space> for omnifunc; on some terminals, <C-Space> is <Nul>
@@ -193,30 +192,11 @@ imap <buffer> <Nul> <C-Space>
 smap <buffer> <Nul> <C-Space>
 inoremap <silent> <buffer> <C-Space> <c-x><c-o>
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#ale#enabled = 1
-
-let g:ctrlp_map = ';'
-let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_working_path_mode = 'c'
-
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_python_checkers = ['flake8']
-
-" vim-go mappings
-autocmd FileType go nmap <leader>d <Plug>(go-def)
-
-"let g:tagbar_width = 30
-
 "autocmd BufEnter *.c,*.h,*.py,*.sh nested TagbarOpen
 "autocmd vimenter * NERDTree
 autocmd WinEnter * call ExitIfNERDTreeIsLastWindow()
 
-" language specific overrides
+" language-specific overrides
 autocmd BufRead,BufNewFile *.html,*.json,*.js setlocal tabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.go setlocal noexpandtab
 autocmd BufRead,BufNewFile Makefile* setlocal noexpandtab
