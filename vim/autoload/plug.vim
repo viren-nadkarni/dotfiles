@@ -2586,3 +2586,277 @@ endif
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
+se
+        let [valid, msg] = [0, 'Not found. Try PlugInstall.']
+      endif
+    else
+      if is_dir
+        let [valid, msg] = [1, 'OK']
+      else
+        let [valid, msg] = [0, 'Not found.']
+      endif
+    endif
+    let cnt += 1
+    let ecnt += !valid
+    " `s:loaded` entry can be missing if PlugUpgraded
+    if is_dir && get(s:loaded, name, -1) == 0
+      let unloaded = 1
+      let msg .= ' (not loaded)'
+    endif
+    call s:progress_bar(2, repeat('=', cnt), total)
+    call append(3, s:format_message(valid ? '-' : 'x', name, msg))
+    normal! 2G
+    redraw
+  endfor
+  call setline(1, 'Finished. '.ecnt.' error(s).')
+  normal! gg
+  setlocal nomodifiable
+  if unloaded
+    echo "Press 'L' on each line to load plugin, or 'U' to update"
+    nnoremap <silent> <buffer> L :call <SID>status_load(line('.'))<cr>
+    xnoremap <silent> <buffer> L :call <SID>status_load(line('.'))<cr>
+  end
+endfunction
+
+function! s:extract_name(str, prefix, suffix)
+  return matchstr(a:str, '^'.a:prefix.' \zs[^:]\+\ze:.*'.a:suffix.'$')
+endfunction
+
+function! s:status_load(lnum)
+  let line = getline(a:lnum)
+  let name = s:extract_name(line, '-', '(not loaded)')
+  if !empty(name)
+    call plug#load(name)
+    setlocal modifiable
+    call setline(a:lnum, substitute(line, ' (not loaded)$', '', ''))
+    setlocal nomodifiable
+  endif
+endfunction
+
+function! s:status_update() range
+  let lines = getline(a:firstline, a:lastline)
+  let names = filter(map(lines, 's:extract_name(v:val, "[x-]", "")'), '!empty(v:val)')
+  if !empty(names)
+    echo
+    execute 'PlugUpdate' join(names)
+  endif
+endfunction
+
+function! s:is_preview_window_open()
+  silent! wincmd P
+  if &previewwindow
+    wincmd p
+    return 1
+  endif
+endfunction
+
+function! s:find_name(lnum)
+  for lnum in reverse(range(1, a:lnum))
+    let line = getline(lnum)
+    if empty(line)
+      return ''
+    endif
+    let name = s:extract_name(line, '-', '')
+    if !empty(name)
+      return name
+    endif
+  endfor
+  return ''
+endfunction
+
+function! s:preview_commit()
+  if b:plug_preview < 0
+    let b:plug_preview = !s:is_preview_window_open()
+  endif
+
+  let sha = matchstr(getline('.'), '^  \X*\zs[0-9a-f]\{7,9}')
+  if empty(sha)
+    let name = matchstr(getline('.'), '^- \zs[^:]*\ze:$')
+    if empty(name)
+      return
+    endif
+    let title = 'HEAD@{1}..'
+    let command = 'git diff --no-color HEAD@{1}'
+  else
+    let title = sha
+    let command = 'git show --no-color --pretty=medium '.sha
+    let name = s:find_name(line('.'))
+  endif
+
+  if empty(name) || !has_key(g:plugs, name) || !isdirectory(g:plugs[name].dir)
+    return
+  endif
+
+  if !s:is_preview_window_open()
+    execute get(g:, 'plug_pwindow', 'vertical rightbelow new')
+    execute 'e' title
+  else
+    execute 'pedit' title
+    wincmd P
+  endif
+  setlocal previewwindow filetype=git buftype=nofile bufhidden=wipe nobuflisted modifiable
+  let batchfile = ''
+  try
+    let [sh, shellcmdflag, shrd] = s:chsh(1)
+    let cmd = 'cd '.plug#shellescape(g:plugs[name].dir).' && '.command
+    if s:is_win
+      let [batchfile, cmd] = s:batchfile(cmd)
+    endif
+    execute 'silent %!' cmd
+  finally
+    let [&shell, &shellcmdflag, &shellredir] = [sh, shellcmdflag, shrd]
+    if s:is_win && filereadable(batchfile)
+      call delete(batchfile)
+    endif
+  endtry
+  setlocal nomodifiable
+  nnoremap <silent> <buffer> q :q<cr>
+  wincmd p
+endfunction
+
+function! s:section(flags)
+  call search('\(^[x-] \)\@<=[^:]\+:', a:flags)
+endfunction
+
+function! s:format_git_log(line)
+  let indent = '  '
+  let tokens = split(a:line, nr2char(1))
+  if len(tokens) != 5
+    return indent.substitute(a:line, '\s*$', '', '')
+  endif
+  let [graph, sha, refs, subject, date] = tokens
+  let tag = matchstr(refs, 'tag: [^,)]\+')
+  let tag = empty(tag) ? ' ' : ' ('.tag.') '
+  return printf('%s%s%s%s%s (%s)', indent, graph, sha, tag, subject, date)
+endfunction
+
+function! s:append_ul(lnum, text)
+  call append(a:lnum, ['', a:text, repeat('-', len(a:text))])
+endfunction
+
+function! s:diff()
+  call s:prepare()
+  call append(0, ['Collecting changes ...', ''])
+  let cnts = [0, 0]
+  let bar = ''
+  let total = filter(copy(g:plugs), 's:is_managed(v:key) && isdirectory(v:val.dir)')
+  call s:progress_bar(2, bar, len(total))
+  for origin in [1, 0]
+    let plugs = reverse(sort(items(filter(copy(total), (origin ? '' : '!').'(has_key(v:val, "commit") || has_key(v:val, "tag"))'))))
+    if empty(plugs)
+      continue
+    endif
+    call s:append_ul(2, origin ? 'Pending updates:' : 'Last update:')
+    for [k, v] in plugs
+      let branch = s:git_origin_branch(v)
+      if len(branch)
+        let range = origin ? '..origin/'.branch : 'HEAD@{1}..'
+        let cmd = ['git', 'log', '--graph', '--color=never']
+        if s:git_version_requirement(2, 10, 0)
+          call add(cmd, '--no-show-signature')
+        endif
+        call extend(cmd, ['--pretty=format:%x01%h%x01%d%x01%s%x01%cr', range])
+        if has_key(v, 'rtp')
+          call extend(cmd, ['--', v.rtp])
+        endif
+        let diff = s:system_chomp(cmd, v.dir)
+        if !empty(diff)
+          let ref = has_key(v, 'tag') ? (' (tag: '.v.tag.')') : has_key(v, 'commit') ? (' '.v.commit) : ''
+          call append(5, extend(['', '- '.k.':'.ref], map(s:lines(diff), 's:format_git_log(v:val)')))
+          let cnts[origin] += 1
+        endif
+      endif
+      let bar .= '='
+      call s:progress_bar(2, bar, len(total))
+      normal! 2G
+      redraw
+    endfor
+    if !cnts[origin]
+      call append(5, ['', 'N/A'])
+    endif
+  endfor
+  call setline(1, printf('%d plugin(s) updated.', cnts[0])
+        \ . (cnts[1] ? printf(' %d plugin(s) have pending updates.', cnts[1]) : ''))
+
+  if cnts[0] || cnts[1]
+    nnoremap <silent> <buffer> <plug>(plug-preview) :silent! call <SID>preview_commit()<cr>
+    if empty(maparg("\<cr>", 'n'))
+      nmap <buffer> <cr> <plug>(plug-preview)
+    endif
+    if empty(maparg('o', 'n'))
+      nmap <buffer> o <plug>(plug-preview)
+    endif
+  endif
+  if cnts[0]
+    nnoremap <silent> <buffer> X :call <SID>revert()<cr>
+    echo "Press 'X' on each block to revert the update"
+  endif
+  normal! gg
+  setlocal nomodifiable
+endfunction
+
+function! s:revert()
+  if search('^Pending updates', 'bnW')
+    return
+  endif
+
+  let name = s:find_name(line('.'))
+  if empty(name) || !has_key(g:plugs, name) ||
+    \ input(printf('Revert the update of %s? (y/N) ', name)) !~? '^y'
+    return
+  endif
+
+  call s:system('git reset --hard HEAD@{1} && git checkout '.plug#shellescape(g:plugs[name].branch).' --', g:plugs[name].dir)
+  setlocal modifiable
+  normal! "_dap
+  setlocal nomodifiable
+  echo 'Reverted'
+endfunction
+
+function! s:snapshot(force, ...) abort
+  call s:prepare()
+  setf vim
+  call append(0, ['" Generated by vim-plug',
+                \ '" '.strftime("%c"),
+                \ '" :source this file in vim to restore the snapshot',
+                \ '" or execute: vim -S snapshot.vim',
+                \ '', '', 'PlugUpdate!'])
+  1
+  let anchor = line('$') - 3
+  let names = sort(keys(filter(copy(g:plugs),
+        \'has_key(v:val, "uri") && isdirectory(v:val.dir)')))
+  for name in reverse(names)
+    let sha = has_key(g:plugs[name], 'commit') ? g:plugs[name].commit : s:git_revision(g:plugs[name].dir)
+    if !empty(sha)
+      call append(anchor, printf("silent! let g:plugs['%s'].commit = '%s'", name, sha))
+      redraw
+    endif
+  endfor
+
+  if a:0 > 0
+    let fn = s:plug_expand(a:1)
+    if filereadable(fn) && !(a:force || s:ask(a:1.' already exists. Overwrite?'))
+      return
+    endif
+    call writefile(getline(1, '$'), fn)
+    echo 'Saved as '.a:1
+    silent execute 'e' s:esc(fn)
+    setf vim
+  endif
+endfunction
+
+function! s:split_rtp()
+  return split(&rtp, '\\\@<!,')
+endfunction
+
+let s:first_rtp = s:escrtp(get(s:split_rtp(), 0, ''))
+let s:last_rtp  = s:escrtp(get(s:split_rtp(), -1, ''))
+
+if exists('g:plugs')
+  let g:plugs_order = get(g:, 'plugs_order', keys(g:plugs))
+  call s:upgrade_specs()
+  call s:define_commands()
+endif
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
