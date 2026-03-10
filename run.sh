@@ -59,8 +59,9 @@ function post_steps {
             tmux tmuxinator pandoc texlive-latex-recommended \  # stuff
             fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \ # fonts
             fonts-clear-sans fonts-montserrat
+
         rustup default stable
-        cargo install starship --locked
+        cargo install starship uv --locked
 
         echo
         echo "Install manually"
