@@ -58,10 +58,10 @@ function post_steps {
             net-tools fdisk \  # sys tools
             tmux tmuxinator pandoc texlive-latex-recommended \  # stuff
             fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \ # fonts
-            fonts-clear-sans fonts-montserrat
+            fonts-clear-sans fonts-montserrat fonts-open-sans
 
         rustup default stable
-        cargo install starship uv --locked
+        cargo install starship uv typst-cli --locked
 
         echo
         echo "Install manually"
