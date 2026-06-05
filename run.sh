@@ -96,7 +96,12 @@ function prompt_choice {
 }
 
 
-if [[ $# == 1 ]] || [[ ${1:-} == "-h" ]]; then
+if [[ ${1:-} == "-h" ]]; then
+    print_help
+    exit 0
+fi
+
+if [[ $# == 0 ]]; then
     print_help
     exit 1
 fi
