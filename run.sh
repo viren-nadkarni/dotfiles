@@ -8,7 +8,21 @@ CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ## Options:
 ##      -h      Show this message
 
-dotfiles="config bash_alias bash_function bashrc curlrc gdbinit gitconfig gitignore_global ideavimrc tmux.conf vim vimrc wgetrc"
+dotfile_map=(
+    "config:~/.config"
+    "bash_alias:~/.bash_alias"
+    "bash_function:~/.bash_function"
+    "bashrc:~/.bashrc"
+    "curlrc:~/.curlrc"
+    "gdbinit:~/.gdbinit"
+    "gitconfig:~/.gitconfig"
+    "gitignore_global:~/.gitignore_global"
+    "ideavimrc:~/.ideavimrc"
+    "tmux.conf:~/.tmux.conf"
+    "vim:~/.vim"
+    "vimrc:~/.vimrc"
+    "wgetrc:~/.wgetrc"
+)
 
 function print_help {
     sed -rn 's/^## ?//;T;p' "$0"
@@ -18,20 +32,22 @@ function backup_dotfiles {
     backup_dir=~/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)
     mkdir "$backup_dir"
 
-    for file in $dotfiles; do
-        file_src=~/.${file}
-        if [ -a "$file_src" ]; then
-            file_dest=$backup_dir/.${file}
-            mv "$file_src" "$file_dest"
-            echo "Backed up $file_src to $file_dest"
+    for entry in "${dotfile_map[@]}"; do
+        file_dest="${entry#*:}"
+        file_dest="${file_dest/#\~/$HOME}"
+        if [ -a "$file_dest" ]; then
+            file_backup="$backup_dir/$(basename "$file_dest")"
+            mv "$file_dest" "$file_backup"
+            echo "Backed up $file_dest to $file_backup"
         fi
     done
 }
 
 function install_dotfiles {
-    for file in $dotfiles; do
-        file_src=$CWD/$file
-        file_dest=~/.$file
+    for entry in "${dotfile_map[@]}"; do
+        file_src="$CWD/${entry%%:*}"
+        file_dest="${entry#*:}"
+        file_dest="${file_dest/#\~/$HOME}"
         cp -r "$file_src" "$file_dest"
         echo "Copied $file_src to $file_dest"
     done
