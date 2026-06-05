@@ -82,12 +82,17 @@ function prompt_choice {
     read -p "> " -n 1
     echo
 
+    append_once() {
+        local snippet_file=$1
+        grep -qF "$(cat "$snippet_file")" ~/.bashrc || cat "$snippet_file" >> ~/.bashrc
+    }
+
     case $REPLY in
         1 )
-            cat ${CWD}/_prompt_old >> ~/.bashrc
+            append_once "${CWD}/_prompt_old"
             ;;
         2 )
-            cat ${CWD}/_prompt_starship >> ~/.bashrc
+            append_once "${CWD}/_prompt_starship"
             ;;
         * )
             echo "WTF, wrong choice"
