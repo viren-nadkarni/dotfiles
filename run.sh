@@ -8,6 +8,20 @@ CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ## Options:
 ##      -h      Show this message
 
+function print_help {
+    sed -rn 's/^## ?//;T;p' "$0"
+}
+
+if [[ ${1:-} == "-h" ]]; then
+    print_help
+    exit 0
+fi
+
+if [[ $# == 0 ]]; then
+    print_help
+    exit 1
+fi
+
 dotfile_map=(
     "config:~/.config"
     "bash_alias:~/.bash_alias"
@@ -22,11 +36,9 @@ dotfile_map=(
     "vim:~/.vim"
     "vimrc:~/.vimrc"
     "wgetrc:~/.wgetrc"
+    "AGENTS.md:~/.config/opencode/AGENTS.md"
+    "tui.json:~/.config/opencode/tui.json"
 )
-
-function print_help {
-    sed -rn 's/^## ?//;T;p' "$0"
-}
 
 function backup_dotfiles {
     backup_dir=~/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)
@@ -115,17 +127,6 @@ function prompt_choice {
             exit 1
     esac
 }
-
-
-if [[ ${1:-} == "-h" ]]; then
-    print_help
-    exit 0
-fi
-
-if [[ $# == 0 ]]; then
-    print_help
-    exit 1
-fi
 
 backup_dotfiles
 
