@@ -16,13 +16,13 @@ function print_help {
 
 function backup_dotfiles {
     backup_dir=~/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)
-    mkdir $backup_dir
+    mkdir "$backup_dir"
 
     for file in $dotfiles; do
         file_src=~/.${file}
-        if [ -a $file_src ]; then
+        if [ -a "$file_src" ]; then
             file_dest=$backup_dir/.${file}
-            mv $file_src $file_dest
+            mv "$file_src" "$file_dest"
             echo "Backed up $file_src to $file_dest"
         fi
     done
@@ -32,7 +32,7 @@ function install_dotfiles {
     for file in $dotfiles; do
         file_src=$CWD/$file
         file_dest=~/.$file
-        cp -r $file_src $file_dest
+        cp -r "$file_src" "$file_dest"
         echo "Copied $file_src to $file_dest"
     done
 }
@@ -45,12 +45,12 @@ function bye {
 }
 
 function post_steps {
-    if [ $(uname) == "Darwin" ]; then
+    if [ "$(uname)" == "Darwin" ]; then
         brew update
         brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
             git git-extras coreutils parallel wdiff git-delta git-lfs
 
-    elif [ $(uname) == "Linux" ]; then
+    elif [ "$(uname)" == "Linux" ]; then
         # Assume Ubuntu
         sudo apt update
         sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \  # CLI tools
