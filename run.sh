@@ -27,7 +27,6 @@ DOTFILE_MAP=(
     "gitconfig:~/.gitconfig"
     "gitignore_global:~/.gitignore_global"
     "ideavimrc:~/.ideavimrc"
-    "plug.vim:~/.vim/autoload/plug.vim"
     "tmux.conf:~/.tmux.conf"
     "vimrc:~/.vimrc"
     "wgetrc:~/.wgetrc"
@@ -89,6 +88,8 @@ function restore_dotfiles {
 }
 
 function install_vim_plugins {
+    curl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+        --output ~/.vim/autoload/plug.vim
     vim +PlugInstall +qall
 }
 
@@ -103,7 +104,7 @@ function install_packages {
         # Assume Ubuntu
         $SUDO apt update
         $SUDO apt install -y \
-            libssl-dev vim \
+            libssl-dev vim curl \
             bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \
             rustup build-essential autoconf automake make cmake apt-file pkg-config \
             net-tools fdisk \
