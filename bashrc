@@ -1,5 +1,7 @@
-
+#
 # https://github.com/viren-nadkarni/dotfiles
+#
+
 # do nothing if not running interactively
 [[ $- != *i* ]] && return
 
@@ -24,10 +26,11 @@ shopt -s histappend
 
 # append history to make it searchable across parallel sessions
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
 export EDITOR="vim"
 export TERM="xterm-256color"
 
-# virtualenv
+# python virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
@@ -39,14 +42,18 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # bash completion
 [ -r /etc/bash_completion ] && source /etc/bash_completion
 
-# functions
+# custom functions
 [ -r ~/.bash_function ] && source ~/.bash_function
 
-# aliases
+# custom aliases
 [ -r ~/.bash_alias ] && source ~/.bash_alias
 
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune zippy; echo)
 
 # fzf keybindings
-source /usr/share/doc/fzf/examples/key-bindings.bash
+[ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+
+# custom shell prompt
+eval "$(starship init bash)"
+

@@ -45,7 +45,7 @@ function backup_dotfiles {
         fi
 
         if [ -e "$file_dest" ] || [ -L "$file_dest" ]; then
-            file_backup="$(dirname "$file_dest")/.$(basename "$file_dest").backup"
+            file_backup="$(dirname "$file_dest")/$(basename "$file_dest").backup"
             mv "$file_dest" "$file_backup"
             echo "Backed up $file_dest to $file_backup"
         fi
@@ -115,38 +115,10 @@ function install_packages {
     fi
 }
 
-function prompt_choice {
-    echo
-    echo "Select the shell prompt:"
-    echo "[1] The old shell prompt"
-    echo "[2] Starship"
-
-    read -p "> " -n 1
-    echo
-
-    append_once() {
-        local snippet_file=$1
-        grep -qF "$(cat "$snippet_file")" ~/.bashrc || cat "$snippet_file" >> ~/.bashrc
-    }
-
-    case $REPLY in
-        1 )
-            append_once "${CWD}/_prompt_old"
-            ;;
-        2 )
-            append_once "${CWD}/_prompt_starship"
-            ;;
-        * )
-            echo "Invalid choice"
-            exit 1
-    esac
-}
-
 case "${1:-}" in
     install )
         backup_dotfiles
         install_dotfiles
-        prompt_choice
         install_packages
         install_vim_plugins
         ;;
