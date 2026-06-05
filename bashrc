@@ -30,6 +30,21 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export EDITOR="vim"
 export TERM="xterm-256color"
 
+# bash completion
+[ -r /etc/bash_completion ] && source /etc/bash_completion
+
+if [ "$(uname)" == "Darwin" ]; then
+    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
+
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+    export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
+command -v aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
+command -v terraform >/dev/null 2>&1 && complete -C terraform terraform
+
 # python virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
@@ -38,9 +53,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -r /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 [ -r $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
-
-# bash completion
-[ -r /etc/bash_completion ] && source /etc/bash_completion
 
 # custom functions
 [ -r ~/.bash_function ] && source ~/.bash_function
@@ -57,3 +69,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # custom shell prompt
 eval "$(starship init bash)"
 
+# secrets
+# DO NOT PLACE SECRETS IN THIS FILE!
+[ -r ~/.secrets ] && source ~/.secrets

@@ -1,8 +1,7 @@
 #!/bin/bash
-set -euo pipefail
-CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-## run.sh
+set -euo pipefail
+
 ## Usage:
 ##      ./run.sh <command>
 ## Commands:
@@ -11,7 +10,14 @@ CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ## Options:
 ##      -h          Show this message
 
-dotfile_map=(
+CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+SUDO=''
+if [ "$(id -u)" -ne 0 ]; then
+    SUDO='sudo'
+fi
+
+DOTFILE_MAP=(
     "starship.toml:~/.config/starship.toml"
     "bash_alias:~/.bash_alias"
     "bash_function:~/.bash_function"
@@ -21,8 +27,8 @@ dotfile_map=(
     "gitconfig:~/.gitconfig"
     "gitignore_global:~/.gitignore_global"
     "ideavimrc:~/.ideavimrc"
+    "plug.vim:~/.vim/autoload/plug.vim"
     "tmux.conf:~/.tmux.conf"
-    "vim:~/.vim"
     "vimrc:~/.vimrc"
     "wgetrc:~/.wgetrc"
     "AGENTS.md:~/.config/opencode/AGENTS.md"
@@ -34,7 +40,7 @@ function print_help {
 }
 
 function backup_dotfiles {
-    for entry in "${dotfile_map[@]}"; do
+    for entry in "${DOTFILE_MAP[@]}"; do
         file_src="$CWD/${entry%%:*}"
         file_dest="${entry#*:}"
         file_dest="${file_dest/#\~/$HOME}"
@@ -53,7 +59,7 @@ function backup_dotfiles {
 }
 
 function install_dotfiles {
-    for entry in "${dotfile_map[@]}"; do
+    for entry in "${DOTFILE_MAP[@]}"; do
         file_src="$CWD/${entry%%:*}"
         file_dest="${entry#*:}"
         file_dest="${file_dest/#\~/$HOME}"
@@ -64,11 +70,11 @@ function install_dotfiles {
 }
 
 function restore_dotfiles {
-    for entry in "${dotfile_map[@]}"; do
+    for entry in "${DOTFILE_MAP[@]}"; do
         file_src="$CWD/${entry%%:*}"
         file_dest="${entry#*:}"
         file_dest="${file_dest/#\~/$HOME}"
-        file_backup="$(dirname "$file_dest")/.$(basename "$file_dest").backup"
+        file_backup="$(dirname "$file_dest")/$(basename "$file_dest").backup"
 
         if [ -L "$file_dest" ] && [ "$(readlink "$file_dest")" = "$file_src" ]; then
             rm "$file_dest"
@@ -90,20 +96,24 @@ function install_packages {
     if [ "$(uname)" == "Darwin" ]; then
         brew update
         brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
-            git git-extras coreutils parallel wdiff git-delta git-lfs
+            grep findutils coreutils parallel wdiff \
+            git git-extras git-delta git-lfs
 
     elif [ "$(uname)" == "Linux" ]; then
         # Assume Ubuntu
-        sudo apt update
-        sudo apt install -y bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \  # CLI tools
-            rustup build-essential autoconf automake make cmake apt-file \  # build tools
-            net-tools fdisk \  # sys tools
-            tmux tmuxinator pandoc texlive-latex-recommended \  # stuff
-            fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \ # fonts
+        $SUDO apt update
+        $SUDO apt install -y \
+            libssl-dev vim \
+            bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \
+            rustup build-essential autoconf automake make cmake apt-file pkg-config \
+            net-tools fdisk \
+            tmux tmuxinator pandoc texlive-latex-recommended \
+            fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \
             fonts-clear-sans fonts-montserrat fonts-open-sans
 
         rustup default stable
-        cargo install starship uv typst-cli --locked
+
+        cargo install --locked starship uv typst-cli
 
         echo
         echo "Install manually"
@@ -115,12 +125,18 @@ function install_packages {
     fi
 }
 
+function post_steps {
+    touch ~/.secrets
+    chmod 0600 ~/.secrets
+}
+
 case "${1:-}" in
     install )
         backup_dotfiles
         install_dotfiles
         install_packages
         install_vim_plugins
+        post_steps
         ;;
     restore )
         restore_dotfiles
