@@ -34,12 +34,15 @@ export TERM="xterm-256color"
 [ -r /etc/bash_completion ] && source /etc/bash_completion
 
 if [ "$(uname)" == "Darwin" ]; then
+    export BASH_SILENCE_DEPRECATION_WARNING=1
     export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
 
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
     export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
     export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+    export PATH="$(brew --prefix rustup)/bin:$PATH"
 fi
 
 command -v aws_completer >/dev/null 2>&1 && complete -C aws_completer aws
@@ -53,12 +56,16 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -r /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 [ -r $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
+[ -r /opt/homebrew/bin/virtualenvwrapper.sh ] && source /opt/homebrew/bin/virtualenvwrapper.sh
 
 # custom functions
 [ -r ~/.bash_function ] && source ~/.bash_function
 
 # custom aliases
 [ -r ~/.bash_alias ] && source ~/.bash_alias
+
+# custom bin
+export PATH="~/bin:~/.cargo/bin:~/.local/bin:$PATH"
 
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune zippy; echo)

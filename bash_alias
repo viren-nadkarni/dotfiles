@@ -70,5 +70,10 @@ alias djmkmig='python3 manage.py makemigrations'
 
 alias l='ls'
 alias la='ls --all'
-alias cat='batcat --plain'
 alias fd='fdfind'
+
+if [ "$(uname)" == "Darwin" ]; then
+    alias cat='bat --plain'
+else
+    alias cat='batcat --plain'
+fi

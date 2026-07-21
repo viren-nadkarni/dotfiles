@@ -2,14 +2,6 @@
 
 set -euo pipefail
 
-## Usage:
-##      ./run.sh <command>
-## Commands:
-##      install     Back up current dotfiles and install custom
-##      restore     Remove custom dotfiles and restore original
-## Options:
-##      -h          Show this message
-
 CWD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 SUDO=''
@@ -35,7 +27,15 @@ DOTFILE_MAP=(
 )
 
 function print_help {
-    sed -rn 's/^## ?//;T;p' "$0"
+    cat <<EOF
+Usage:
+     ./run.sh <command>
+Commands:
+     install     Back up current dotfiles and install custom
+     restore     Remove custom dotfiles and restore original
+Options:
+     -h          Show this message
+EOF
 }
 
 function backup_dotfiles {
@@ -88,6 +88,7 @@ function restore_dotfiles {
 }
 
 function install_vim_plugins {
+    mkdir -p ~/.vim/autoload
     curl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
         --output ~/.vim/autoload/plug.vim
     vim +PlugInstall +qall
@@ -98,7 +99,11 @@ function install_packages {
         brew update
         brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
             grep findutils coreutils parallel wdiff \
+            tmux tmuxinator \
+            rustup pkgconfig \
             git git-extras git-delta git-lfs
+
+        export PATH="$(brew --prefix rustup)/bin:$PATH"
 
     elif [ "$(uname)" == "Linux" ]; then
         # Assume Ubuntu
@@ -112,10 +117,6 @@ function install_packages {
             fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \
             fonts-clear-sans fonts-montserrat fonts-open-sans
 
-        rustup default stable
-
-        cargo install --locked starship uv typst-cli
-
         echo
         echo "Install manually"
         echo "git-delta https://github.com/dandavison/delta"
@@ -124,6 +125,9 @@ function install_packages {
     else
         echo "Unknown OS: $(uname)"
     fi
+
+    rustup default stable
+    cargo install --locked starship uv typst-cli
 }
 
 function post_steps {
