@@ -24,6 +24,7 @@ DOTFILE_MAP=(
     "wgetrc:~/.wgetrc"
     "AGENTS.md:~/.config/opencode/AGENTS.md"
     "tui.json:~/.config/opencode/tui.json"
+    "AGENTS.md:~/.pi/agent/AGENTS.md"
 )
 
 function print_help {
