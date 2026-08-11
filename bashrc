@@ -71,7 +71,7 @@ export PATH="~/bin:~/.cargo/bin:~/.local/bin:$PATH"
 #[ -x /usr/games/fortune ] && (echo; fortune zippy; echo)
 
 # fzf keybindings
-[ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+eval "$(fzf --bash)"
 
 # custom shell prompt
 eval "$(starship init bash)"
