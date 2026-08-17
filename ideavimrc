@@ -5,6 +5,7 @@ let mapleader=','
 map <Leader>d :action GotoImplementation<CR>
 map <Leader>r :action GotoDeclaration<CR>
 map <Leader>s :action GotoTypeDeclaration<CR>
+map <Leader>u :action FindUsages<CR>
 
 set incsearch
 set ignorecase
