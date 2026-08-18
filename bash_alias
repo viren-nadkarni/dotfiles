@@ -8,9 +8,11 @@ if [ $UID -ne 0 ]; then
     alias shutdown='sudo shutdown now'
 fi
 
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
+if [ "$(uname)" == "Linux" ]; then
+    alias chown='chown --preserve-root'
+    alias chmod='chmod --preserve-root'
+    alias chgrp='chgrp --preserve-root'
+fi
 
 alias ls='ls -hF --color=auto'
 alias lr='ls -R'                    # recursive
@@ -72,8 +74,8 @@ alias l='ls'
 alias la='ls --all'
 alias fd='fdfind'
 
-if [ "$(uname)" == "Darwin" ]; then
-    alias cat='bat --plain'
-else
+if [ "$(uname)" == "Linux" ]; then
     alias cat='batcat --plain'
+else
+    alias cat='bat --plain'
 fi
