@@ -99,7 +99,7 @@ function install_packages {
     if [ "$(uname)" == "Darwin" ]; then
         brew update
         brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
-            grep findutils coreutils parallel wdiff \
+            grep findutils coreutils parallel wdiff wget \
             tmux tmuxinator \
             rustup pkgconfig \
             git git-extras git-delta git-lfs
@@ -113,7 +113,7 @@ function install_packages {
             libssl-dev vim curl \
             bat fd-find fzf ripgrep colordiff wdiff pass pass-extension-otp \
             rustup build-essential autoconf automake make cmake apt-file pkg-config \
-            net-tools fdisk \
+            net-tools fdisk wget \
             tmux tmuxinator pandoc texlive-latex-recommended \
             fonts-urw-base35 fonts-firacode fonts-powerline ttf-mscorefonts-installer \
             fonts-clear-sans fonts-montserrat fonts-open-sans
