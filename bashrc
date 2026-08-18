@@ -65,7 +65,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -r ~/.bash_alias ] && source ~/.bash_alias
 
 # custom bin
-export PATH="~/bin:~/.cargo/bin:~/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # fortune
 #[ -x /usr/games/fortune ] && (echo; fortune zippy; echo)
