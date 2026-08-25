@@ -15,6 +15,7 @@ DOTFILE_MAP=(
     "bash_function:~/.bash_function"
     "bashrc:~/.bashrc"
     "curlrc:~/.curlrc"
+    "config.ghostty:~/.config/ghostty/config.ghostty"
     "gdbinit:~/.gdbinit"
     "gitconfig:~/.gitconfig"
     "gitignore_global:~/.gitignore_global"

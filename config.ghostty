@@ -1,0 +1,24 @@
+language = en
+
+title = Ghostty
+
+bold-color = bright
+theme = Builtin Tango Dark
+
+font-family = CommitMono
+font-size = 15
+font-thicken = true
+
+macos-option-as-alt = true
+macos-titlebar-style = native
+
+bell-features = system,no-border,audio,attention,no-title
+copy-on-select = clipboard
+mouse-reporting = false
+
+window-height = 42
+window-width = 120
+
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+arrow_left=esc:b
+keybind = ctrl+arrow_right=esc:f
