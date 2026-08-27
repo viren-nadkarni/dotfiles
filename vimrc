@@ -168,6 +168,9 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 "map :q :bd
 
+map <leader>x :split<CR>
+map <leader>v :vsplit<CR>
+
 nmap <silent> \ :call NERDTreeHack()<CR>
 nmap <C-\> :TagbarToggle<CR>
 
@@ -184,7 +187,6 @@ nmap <C-\> :TagbarToggle<CR>
 
 map <leader>d :ALEGoToDefinition<CR>
 map <leader>r :ALEFindReferences<CR>
-map <leader>f :ALEHover<CR>
 set omnifunc=ale#completion#OmniFunc
 
 " use <Ctrl-Space> for omnifunc; on some terminals, <C-Space> is <Nul>
