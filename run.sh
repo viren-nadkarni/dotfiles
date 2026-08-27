@@ -26,6 +26,8 @@ DOTFILE_MAP=(
     "AGENTS.md:~/.config/opencode/AGENTS.md"
     "tui.json:~/.config/opencode/tui.json"
     "AGENTS.md:~/.pi/agent/AGENTS.md"
+    "keymap.json:~/.config/zed/keymap.json"
+    "settings.json:~/.config/zed/settings.json"
 )
 
 function print_help {

@@ -1,0 +1,70 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+[
+  {
+    "context": "FileFinder > Picker > Editor",
+    "bindings": {
+      "ctrl-f": "text_finder::Toggle",
+    },
+  },
+  {
+    "context": "TextFinder > Picker > Editor",
+    "bindings": {
+      "ctrl-f": "file_finder::Toggle",
+    },
+  },
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-[": ["workspace::SendKeystrokes", "escape"],
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-shift-v": "pane::SplitRight",
+      "ctrl-shift-x": "pane::SplitDown",
+    },
+  },
+  {
+    "context": "Editor && mode == auto_height",
+    "bindings": {
+      "ctrl-c": ["workspace::SendKeystrokes", "cmd-c"],
+      "ctrl-v": ["workspace::SendKeystrokes", "cmd-v"],
+      "ctrl-a": ["workspace::SendKeystrokes", "cmd-a"],
+      "ctrl-x": ["workspace::SendKeystrokes", "cmd-x"],
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-p": "pane::ActivatePreviousItem",
+      "ctrl-shift-n": "pane::ActivateNextItem",
+    }
+   },
+   {
+    "context": "VimControl && !menu",
+    "bindings": {
+      ", d": "editor::GoToDefinition",
+      ", r": "editor::FindAllReferences",
+      ", b": "git::Blame",
+      ", x": "pane::SplitDown",
+      ", v": "pane::SplitRight",
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "` `": "pane::GoBack",
+      ";": "file_finder::Toggle",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
+  },
+]
