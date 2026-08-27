@@ -4,7 +4,9 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
+    "entry_spacing": "standard",
+    "indent_size": 15,
   },
   "outline_panel": {
     "dock": "left"
@@ -14,14 +16,31 @@
     "dock": "left"
   },
   "agent": {
+    "sidebar_side": "right",
     "enable_feedback": false,
     "default_model": {
       "provider": "openrouter",
-      "model": "~deepseek/deepseek-v4-flash-latest",
+      "model": "openai/gpt-5.6-terra",
       "enable_thinking": true
     },
     "dock": "right",
-    "favorite_models": [],
+    "favorite_models": [
+      {
+        "provider": "openrouter",
+        "model": "openai/gpt-5.6-terra",
+        "enable_thinking": true
+      },
+      {
+        "provider": "openrouter",
+        "model": "openai/gpt-5.6-sol",
+        "enable_thinking": true
+      },
+      {
+        "provider": "openrouter",
+        "model": "anthropic/claude-opus-4.6",
+        "enable_thinking": true
+      }
+    ],
     "model_parameters": []
   },
   "git_panel": {
@@ -30,6 +49,9 @@
   "title_bar": {
     "show_sign_in": false,
   },
+  "gutter": {
+    "folds": false,
+  },
   "show_edit_predictions": true,
   "edit_predictions": {
     "allow_data_collection": "no",
@@ -37,7 +59,7 @@
     "provider": "open_ai_compatible_api",
     "open_ai_compatible_api": {
       "api_url": "https://openrouter.ai/api/v1/chat/completions",
-      "model": "deepseek/deepseek-v4-flash",
+      "model": "z-ai/glm-5.3-flash",
       "prompt_format": "deepseek_coder",
     },
   },
@@ -49,16 +71,21 @@
   },
   "buffer_font_family": "CommitMono",
   "buffer_font_size": 14,
-  "buffer_line_height": "standard",
+  "buffer_line_height": {
+    "custom": 1.15,
+  },
   "buffer_font_features": {
       "calt": false
   },
   "line_indicator_format": "short",
+  "restore_on_startup": "last_session",
   "use_smartcase_search": true,
   "ui_font_size": 15,
   "terminal":{
     "font_size": 13,
-    "line_height": "standard",
+    "line_height": {
+      "custom": 1.15
+    }
   },
   "git": {
     "inline_blame": {
@@ -69,11 +96,15 @@
   "lsp": {
     "basedpyright": {
       "settings": {
-        "basedpyright.analysis": {
+        "basedpyright": {"analysis": {
           "diagnosticSeverityOverrides": {
             "reportUnknownMemberType": "none",
+            "reportUnknownVariableType": "none",
+            "reportUnknownParameterType": "none",
             "reportMissingTypeStubs": "none",
+            "reportMissingParameterType": "none",
           }
+        }
         }
       }
     }
@@ -81,7 +112,8 @@
   "languages": {
     "Python": {
       "language_servers": [
-        "basedpyright"
+        "basedpyright",
+        "pytest-language-server",
       ],
       "code_actions_on_format": {
         "source.organizeImports.ruff": true

@@ -42,6 +42,19 @@
     }
    },
    {
+     "context": "Editor || Terminal",
+     "bindings": {
+       "ctrl-shift-c": "editor::Copy",
+       "ctrl-shift-v": "editor::Paste",
+     }
+   },
+   {
+     "context": "Terminal",
+     "bindings": {
+       "ctrl-k": "workspace::ActivatePaneUp",
+     }
+   },
+   {
     "context": "VimControl && !menu",
     "bindings": {
       ", d": "editor::GoToDefinition",
