@@ -69,6 +69,7 @@
     "bindings": {
       "` `": "pane::GoBack",
       ";": "file_finder::Toggle",
+      "\\": "workspace::ToggleRightDock",
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
     },
@@ -80,4 +81,13 @@
       "ctrl-k": "editor::ContextMenuPrevious",
     },
   },
+  {
+    "context": "AgentPanel > Editor",
+    "bindings": {
+      "ctrl-y": "agent::AllowOnce",
+      "ctrl-n": "agent::RejectOnce",
+      "tab": "agent::CycleModeSelector",
+      "ctrl-p": "agent::ToggleModelSelector",
+    }
+  }
 ]
