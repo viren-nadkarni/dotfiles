@@ -2,10 +2,27 @@ Plug 'tpope/vim-surround'
 
 let mapleader=','
 
-map <Leader>d :action GotoImplementation<CR>
-map <Leader>r :action GotoDeclaration<CR>
-map <Leader>s :action GotoTypeDeclaration<CR>
-map <Leader>u :action FindUsages<CR>
+" Run :actionlist for supported actions
+nmap <Leader>d :action GotoDeclaration<CR>
+nmap <Leader>u :action ShowUsages<CR>
+nmap <Leader>s :action GotoSuperMethod<CR>
+nmap <Leader>t :action GotoTest<CR>
+nmap <Leader>r :action RenameElement<CR>
+
+nmap <Leader>f :action ShowHoverInfo<CR>
+nmap <Leader>b :action Annotate<CR>
+
+nmap <Leader>x :action SplitVertically<CR>
+nmap <Leader>v :action SplitHorizontally<CR>
+
+nmap <C-h> <action>(PrevSplitter)
+nmap <C-l> <action>(NextSplitter)
+nmap <C-S-p> <action>(PreviousTab)
+nmap <C-S-n> <action>(NextTab)
+
+nmap ; <action>(SearchEverywhere)
+nmap <C- > <action>(CodeCompletion)
+nmap <C-CR> <action>(ShowIntentionActions)
 
 set incsearch
 set ignorecase
