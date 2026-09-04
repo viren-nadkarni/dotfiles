@@ -6,8 +6,10 @@ let mapleader=','
 nmap <Leader>d :action GotoDeclaration<CR>
 nmap <Leader>u :action ShowUsages<CR>
 nmap <Leader>s :action GotoSuperMethod<CR>
+nmap <Leader>i :action GotoImplementation<CR>
 nmap <Leader>t :action GotoTest<CR>
 nmap <Leader>r :action RenameElement<CR>
+vmap <Leader>c :action CommentByLineComment<CR>
 
 nmap <Leader>f :action ShowHoverInfo<CR>
 nmap <Leader>b :action Annotate<CR>
@@ -20,7 +22,7 @@ nmap <C-l> <action>(NextSplitter)
 nmap <C-S-p> <action>(PreviousTab)
 nmap <C-S-n> <action>(NextTab)
 
-nmap ; <action>(SearchEverywhere)
+nmap <C-;> <action>(SearchEverywhere)
 nmap <C- > <action>(CodeCompletion)
 nmap <C-CR> <action>(ShowIntentionActions)
 

@@ -54,6 +54,7 @@
     "bindings": {
       "ctrl-shift-p": "pane::ActivatePreviousItem",
       "ctrl-shift-n": "pane::ActivateNextItem",
+      "ctrl-;": "file_finder::Toggle",
     }
   },
   {
@@ -85,6 +86,7 @@
       ", u": "editor::FindAllReferences",
       ", r": "editor::Rename",
       ", b": "git::Blame",
+      ", f": "editor::Hover",
       ", x": "pane::SplitDown",
       ", v": "pane::SplitRight",
     }
@@ -93,12 +95,11 @@
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "` `": "pane::GoBack",
-      ";": "file_finder::Toggle",
       "\\": "workspace::ToggleRightDock",
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-\\": "outline::Toggle",
-      "ctrl-;": "assistant::InlineAssist",
+      "ctrl-shift-space": "assistant::InlineAssist",
       "ctrl-enter": "editor::ToggleCodeActions",
     },
   },

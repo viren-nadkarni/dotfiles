@@ -186,7 +186,9 @@ nmap <C-\> :TagbarToggle<CR>
 :command Q q
 
 map <leader>d :ALEGoToDefinition<CR>
-map <leader>r :ALEFindReferences<CR>
+map <leader>r :ALERename<CR>
+map <leader>u :ALEFindReferences<CR>
+map <leader>f :ALEHover<CR>
 set omnifunc=ale#completion#OmniFunc
 
 " use <Ctrl-Space> for omnifunc; on some terminals, <C-Space> is <Nul>

@@ -7,7 +7,7 @@
     ci = commit
     cia = commit --amend
     cl = clone --recursive
-    cp = cherry-pick
+    chp = cherry-pick
     d = diff
     dc = diff --cached
     dh = diff HEAD

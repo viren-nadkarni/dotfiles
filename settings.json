@@ -15,8 +15,8 @@
       },
       "default_config_options": {
         "effort": "medium",
-        "mode": "plan",
-        "model": "openrouter/deepseek/deepseek-v4-flash",
+        "mode": "build",
+        "model": "openrouter/anthropic/claude-opus-4.6",
       },
       "type": "registry",
     },
@@ -80,7 +80,7 @@
   "buffer_font_family": "CommitMono",
   "buffer_font_size": 14,
   "buffer_line_height": {
-    "custom": 1.15,
+    "custom": 1.1,
   },
   "buffer_font_features": {
     "calt": false,
@@ -98,12 +98,12 @@
     "copy_on_select": true,
     "font_size": 13,
     "line_height": {
-      "custom": 1.15,
+      "custom": 1.1,
     },
   },
   "git": {
     "inline_blame": {
-      "min_column": 100,
+      "min_column": 120,
     },
   },
   "theme": "Ayu Dark",
