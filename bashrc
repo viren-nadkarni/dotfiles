@@ -39,9 +39,9 @@ if [ "$(uname)" == "Darwin" ]; then
 
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
 
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-    export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    export PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH"
+    export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
     export PATH="$(brew --prefix rustup)/bin:$PATH"
 fi
 
@@ -56,8 +56,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -r /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 [ -r $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
-[ -r /opt/homebrew/bin/virtualenvwrapper.sh ] && source /opt/homebrew/bin/virtualenvwrapper.sh
-
+[ -r "$(brew --prefix rustup)/bin/virtualenvwrapper.sh" ] && source "$(brew --prefix rustup)/bin/virtualenvwrapper.sh"
 # custom functions
 [ -r ~/.bash_function ] && source ~/.bash_function
 

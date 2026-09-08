@@ -102,7 +102,7 @@ function install_packages {
     if [ "$(uname)" == "Darwin" ]; then
         brew update
         brew install bat fd fzf ripgrep colordiff gawk gnu-sed gnu-getopt \
-            grep findutils coreutils parallel wdiff wget \
+            grep make findutils coreutils parallel wdiff wget \
             tmux tmuxinator \
             rustup pkgconfig \
             git git-extras git-delta git-lfs

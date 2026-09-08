@@ -22,9 +22,9 @@ nmap <C-l> <action>(NextSplitter)
 nmap <C-S-p> <action>(PreviousTab)
 nmap <C-S-n> <action>(NextTab)
 
-nmap <C-;> <action>(SearchEverywhere)
-nmap <C- > <action>(CodeCompletion)
-nmap <C-CR> <action>(ShowIntentionActions)
+map <C-;> <action>(SearchEverywhere)
+map <C- > <action>(CodeCompletion)
+map <C-CR> <action>(ShowIntentionActions)
 
 set incsearch
 set ignorecase
