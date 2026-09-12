@@ -9,6 +9,7 @@ font-family = CommitMono
 font-size = 15
 font-thicken = true
 
+macos-icon = chalkboard
 macos-option-as-alt = true
 macos-titlebar-style = native
 
