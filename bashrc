@@ -56,7 +56,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -r /usr/share/virtualenvwrapper/virtualenvwrapper.sh ] && source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 [ -r $HOME/.local/bin/virtualenvwrapper.sh ] && source $HOME/.local/bin/virtualenvwrapper.sh
-[ -r "$(brew --prefix rustup)/bin/virtualenvwrapper.sh" ] && source "$(brew --prefix rustup)/bin/virtualenvwrapper.sh"
+[ -r "$(brew --prefix virtualenvwrapper)/bin/virtualenvwrapper.sh" ] && source "$(brew --prefix virtualenvwrapper)/bin/virtualenvwrapper.sh"
 # custom functions
 [ -r ~/.bash_function ] && source ~/.bash_function
 
