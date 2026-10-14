@@ -24,7 +24,7 @@ DOTFILE_MAP=(
     "vimrc:~/.vimrc"
     "wgetrc:~/.wgetrc"
     "AGENTS.md:~/.config/opencode/AGENTS.md"
-    "tui.json:~/.config/opencode/tui.json"
+    "cli.json:~/.config/opencode/cli.json"
     "AGENTS.md:~/.pi/agent/AGENTS.md"
     "keymap.json:~/.config/zed/keymap.json"
     "settings.json:~/.config/zed/settings.json"
