@@ -14,5 +14,11 @@
     "notifications": true,
     "sound": true,
     "volume": 1.0
+  },
+  "keybinds": {
+    "agent.cycle": "tab"
+  },
+  "tabs": {
+    "mode": "off"
   }
 }
