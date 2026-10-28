@@ -14,7 +14,7 @@ macos-option-as-alt = true
 macos-titlebar-style = native
 
 bell-features = system,no-border,audio,attention,no-title
-copy-on-select = clipboard
+copy-on-select = both
 mouse-reporting = false
 
 window-height = 42
