@@ -1,7 +1,5 @@
 language = en
 
-title = Ghostty
-
 bold-color = bright
 theme = Builtin Tango Dark
 
@@ -24,3 +22,6 @@ keybind = ctrl+shift+v=paste_from_clipboard
 keybind = performable:ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+arrow_left=esc:b
 keybind = ctrl+arrow_right=esc:f
+
+shell-integration = detect
+shell-integration-features = title
