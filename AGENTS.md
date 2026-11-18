@@ -7,3 +7,4 @@ If unsure, say so. Never guess or invent things.
 If the user corrects a factual claim: treat it as ground truth. Never re-assert the original.
 Use British English.
 Use the metric system.
+Run all commands in the foreground. No background execution.
