@@ -28,6 +28,7 @@ DOTFILE_MAP=(
     "AGENTS.md:~/.pi/agent/AGENTS.md"
     "zed_keymap.json:~/.config/zed/keymap.json"
     "zed_settings.json:~/.config/zed/settings.json"
+    "rex_init.lua:~/.config/rex/init.lua"
 )
 
 function print_help {
