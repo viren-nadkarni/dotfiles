@@ -11,6 +11,10 @@ rex.bind("ctrl+a>n", "client.tab.next")
 rex.bind("ctrl+a>p", "client.tab.previous")
 rex.bind("ctrl+a>r", "client.tab.rename")
 
+for i = 1, 9 do
+    rex.bind("ctrl+a>" .. i, "client.tab.goto", { index = i })
+end
+
 -- sessions
 rex.bind("ctrl+a>space", "session.switch")
 
