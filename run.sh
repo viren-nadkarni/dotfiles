@@ -26,8 +26,6 @@ DOTFILE_MAP=(
     "AGENTS.md:~/.config/opencode/AGENTS.md"
     "opencode_cli.json:~/.config/opencode/cli.json"
     "AGENTS.md:~/.pi/agent/AGENTS.md"
-    "zed_keymap.json:~/.config/zed/keymap.json"
-    "zed_settings.json:~/.config/zed/settings.json"
     "rex_init.lua:~/.config/rex/init.lua"
 )
 
