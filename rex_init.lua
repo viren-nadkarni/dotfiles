@@ -33,8 +33,15 @@ rex.bind("ctrl+a>j", "pane.focus", { direction = "down" })
 rex.bind("ctrl+a>k", "pane.focus", { direction = "up" })
 rex.bind("ctrl+a>l", "pane.focus", { direction = "right" })
 
+rex.bind("ctrl+a>left", "pane.focus", { direction = "left" })
+rex.bind("ctrl+a>down", "pane.focus", { direction = "down" })
+rex.bind("ctrl+a>up", "pane.focus", { direction = "up" })
+rex.bind("ctrl+a>right", "pane.focus", { direction = "right" })
+
 rex.bind("ctrl+a>shift+'", "pane.split", { direction = "down" })
 rex.bind("ctrl+a>shift+5", "pane.split", { direction = "right" })
 
 rex.bind("ctrl+shift+v", "pane.paste")
 rex.bind("ctrl+shift+c", "pane.copy")
+
+rex.bind("ctrl+a>[", "pane.copy_mode.enter")
